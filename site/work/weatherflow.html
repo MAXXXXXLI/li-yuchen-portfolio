@@ -1,0 +1,720 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="image" href="../projects/weatherflow/image-9.png"/><link rel="preload" as="image" href="../projects/weatherflow/image-10.png"/><link rel="preload" as="image" href="../projects/weatherflow/image-11.png"/><link rel="preload" as="image" href="../projects/weatherflow/paper-pages/page-01.jpg"/><link rel="preload" as="image" href="../projects/weatherflow/paper-pages/page-02.jpg"/><link rel="preload" as="image" href="../projects/weatherflow/paper-pages/page-03.jpg"/><link rel="preload" as="image" href="../projects/weatherflow/paper-pages/page-04.jpg"/><link rel="preload" as="image" href="../projects/weatherflow/paper-pages/page-05.jpg"/><link rel="preload" as="image" href="../projects/weatherflow/paper-pages/page-06.jpg"/><link rel="preload" as="image" href="../projects/weatherflow/paper-pages/page-07.jpg"/><link rel="stylesheet" href="../_next/static/css/index.BlEUNAtn.css" data-rsc-css-href="../_next/static/css/index.BlEUNAtn.css" data-precedence="vite-rsc/importer-resources"/><link rel="preload" as="image" href="../projects/weatherflow/paper-pages/page-08.jpg"/><link rel="preload" as="image" href="../projects/weatherflow/paper-pages/page-09.jpg"/><link rel="preload" as="image" href="../projects/weatherflow/paper-pages/page-10.jpg"/><link rel="preload" as="image" href="../projects/weatherflow/paper-pages/page-11.jpg"/><title>WeatherFlow｜李昱辰</title><meta name="description" content="自动定位局部语义与全局天气轨迹的冲突，并在采样早期完成隐状态与速度校正，让天气变化落在正确区域。"/><meta property="og:title" content="李昱辰｜生成式模型研究"/><meta property="og:description" content="Diffusion · Flow Matching · Controllable Generation"/><meta property="og:type" content="website"/><meta property="og:image" content="https://maxxxxxli.github.io/li-yuchen-portfolio/og.png"/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta property="og:image:alt" content="Li Yuchen Generative AI Research"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="李昱辰｜生成式模型研究"/><meta name="twitter:description" content="Diffusion · Flow Matching · Controllable Generation"/><meta name="twitter:image" content="https://maxxxxxli.github.io/li-yuchen-portfolio/og.png"/>
+<link rel="preload" href="../_next/static/_vinext_fonts/geist-8ac0455e797f/geist-98bbbccb.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="../_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2" as="font" type="font/woff2" crossorigin />
+<style data-vinext-fonts>/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(../_next/static/_vinext_fonts/geist-8ac0455e797f/geist-ff2310f5.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(../_next/static/_vinext_fonts/geist-8ac0455e797f/geist-875ccdd4.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(../_next/static/_vinext_fonts/geist-8ac0455e797f/geist-52306abf.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(../_next/static/_vinext_fonts/geist-8ac0455e797f/geist-001175b1.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(../_next/static/_vinext_fonts/geist-8ac0455e797f/geist-98bbbccb.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Geist Fallback';
+  src: local("Arial");
+  ascent-override: 95.94%;
+  descent-override: 28.16%;
+  line-gap-override: 0.00%;
+  size-adjust: 104.76%;
+}
+
+.__font_geist_19ysh9d { font-family: 'Geist', 'Geist Fallback'; font-style: normal; }
+
+.__variable_geist_19ysh9d { --font-geist-sans: 'Geist', 'Geist Fallback'; }
+
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(../_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-f6b33328.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(../_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-44e03052.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* symbols2 */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(../_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-0638449e.woff2) format('woff2');
+  unicode-range: U+2000-2001, U+2004-2008, U+200A, U+23B8-23BD, U+2500-259F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(../_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-971fb274.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(../_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-44745446.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(../_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Geist Mono Fallback';
+  src: local("Arial");
+  ascent-override: 74.67%;
+  descent-override: 21.92%;
+  line-gap-override: 0.00%;
+  size-adjust: 134.59%;
+}
+
+.__font_geist_mono_1001rt9 { font-family: 'Geist Mono', 'Geist Mono Fallback'; font-style: normal; }
+
+.__variable_geist_mono_1001rt9 { --font-geist-mono: 'Geist Mono', 'Geist Mono Fallback'; }
+</style>
+</head><body class="__variable_geist_19ysh9d __variable_geist_mono_1001rt9"><main class="markdown-page"><header class="project-topbar"><a href="../index.html#work">← Back</a><span>SIGGRAPH Asia 转投 T-CSVT · 在投 · 学生一作</span><a href="#top">Top ↑</a></header><div class="project-shell" id="top"><article class="markdown-article"><h1>WeatherFlow</h1>
+<h2 id="背景">背景</h2>
+<ul>
+<li><strong>任务背景：</strong> 真实天气迁移要求整体大气、照明和表面风格保持一致，同时让道路、车辆、行人、植被等区域产生符合类别的局部响应，例如湿路反射、积雪覆盖、冬季衣着和深度相关的雾衰减。</li>
+<li><strong>技术背景：</strong> DiT/Rectified-Flow 编辑器可以用自然语言完成单图编辑，但一条全局天气指令通常只能建立统一风格，难以描述每个类别的物理响应。直接加入多条局部语义指令又会让不同条件同时驱动同一采样状态，产生欠编辑、语义泄漏、幻觉或结构漂移。</li>
+<li><strong>方法定位：</strong> WeatherFlow 是一个零样本、免训练的单图天气编辑框架。它不依赖人工掩码或外部分割器，而是从预训练编辑器内部追踪局部语义响应与全局天气轨迹的冲突，并在采样早期进行隐状态级和速度级的投影校正。</li>
+</ul>
+<h2 id="问题-semantic-style-velocity-conflict">问题：Semantic–Style Velocity Conflict</h2>
+<p>全局天气指令希望整幅图沿统一的大气、照明与表面风格方向演化；车辆、行人、植被等局部指令则产生不同的语义速度。当它们在相同 latent 区域上的方向不兼容时，会出现：</p>
+<ul>
+<li>局部天气响应过弱，目标区域几乎不变化；</li>
+<li>属性或语义泄漏到背景及相邻物体；</li>
+<li>物体数量、身份、姿态或结构被错误改写；</li>
+<li>道路、建筑边界或场景布局漂移。</li>
+</ul>
+<p>WeatherFlow 将这种局部语义速度与全局天气风格速度的不一致定义为 <strong>Semantic–Style Velocity Conflict（SSVC，语义—风格速度冲突）</strong>。</p>
+<figure class="markdown-figure"><img src="../projects/weatherflow/image.png" alt="SSVC：全局风格速度与局部语义速度冲突"/><figcaption>SSVC：全局风格速度与局部语义速度冲突</figcaption></figure>
+<h2 id="insight">Insight</h2>
+<ol>
+<li><strong>局部语义响应本身不是噪声。</strong> 雪覆盖、湿路反射、冬季衣着等变化是天气编辑所必需的。关键不是整体压制局部分支，而是识别其中与全局天气载体不兼容的分量。</li>
+<li><strong>冲突同时提供空间定位信号。</strong> 类别 token 的注意力说明“语义可能在哪里”，局部—全局注意力差说明“哪里尚未被全局天气解释”，速度差说明“哪里在动力学上真正分歧”。三者结合即可定位需要干预的区域。</li>
+<li><strong>借鉴流体求解器的投影—校正原则。</strong> 方法不照搬不可压缩流体方程，而是采用其计算思想：先得到包含有用局部响应的暂定速度，再校正违反全局天气约束的分量，最后推进主状态。</li>
+<li><strong>冲突应尽早解决。</strong> 早期步骤决定语义分配、物体级偏移和主要运输方向；后期主要细化色调、纹理、光照与大气效果。一旦冲突形成，晚期干预很难逆转结构漂移。</li>
+</ol>
+<figure class="markdown-figure"><img src="../projects/weatherflow/image-1.png" alt="WeatherFlow 对天气和季节外观变化的协调效果"/><figcaption>WeatherFlow 对天气和季节外观变化的协调效果</figcaption></figure>
+<h2 id="方法">方法</h2>
+<figure class="markdown-figure"><img src="../projects/weatherflow/image-2.png" alt="WeatherFlow 总体框架"/><figcaption>WeatherFlow 总体框架</figcaption></figure>
+<p>WeatherFlow 由自动局部提示词构建、Conflict Region Tracing 和 Semantic–Style Velocity Projection（SSVP）组成。</p>
+<h3 id="1-自动局部提示词与输入协议">1. 自动局部提示词与输入协议</h3>
+<ul>
+<li>目标天气来自固定的六类基准：沙尘、雾、阴天、雨、雪和风暴。</li>
+<li>GPT-5.5 针对道路、植被、车辆、行人、建筑/屋顶、交通设施、天空/远景等固定类别，为每种天气生成一次局部响应提示词库。</li>
+<li>元提示要求天气响应物理合理，同时明确保留物体身份、数量、姿态、位置和几何，不得插入或删除无关物体。</li>
+<li>每个天气的提示词库在推理前冻结，并对所有图像复用，不进行逐图人工改写。</li>
+<li>为排除“只是增加了提示词内容”的影响，论文设置文本匹配对照：把相同局部提示词与全局指令拼接后交给标准单提示接口。</li>
+</ul>
+<h3 id="2-conflict-region-tracing-冲突区域追踪">2. Conflict Region Tracing：冲突区域追踪</h3>
+<p>WeatherFlow 从 FLUX.1 Kontext 的联合文本—图像注意力中提取三类信号：</p>
+<ul>
+<li><strong>语义注意力 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>A</mi><mi>i</mi><mi>k</mi></msubsup></mrow><annotation encoding="application/x-tex">A_i^k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1078em;vertical-align:-0.2587em"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8491em"><span style="top:-2.4413em;margin-left:0em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.063em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2587em"><span></span></span></span></span></span></span></span></span></span>：</strong> 类别 token 对图像 token 的响应，指出局部类别的空间支持。</li>
+<li><strong>语义—风格注意力差 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>G</mi><mi>i</mi><mi>k</mi></msubsup></mrow><annotation encoding="application/x-tex">G_i^k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1078em;vertical-align:-0.2587em"></span><span class="mord"><span class="mord mathnormal">G</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8491em"><span style="top:-2.4413em;margin-left:0em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.063em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2587em"><span></span></span></span></span></span></span></span></span></span>：</strong> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">R</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">L</mi><mi mathvariant="normal">U</mi></mrow><mo stretchy="false">(</mo><msubsup><mi>A</mi><mi>i</mi><mi>k</mi></msubsup><mo>−</mo><msub><mi>λ</mi><mi>s</mi></msub><msubsup><mi>A</mi><mi>i</mi><mi>w</mi></msubsup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathrm{ReLU}(A_i^k-\lambda_s A_i^w)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1078em;vertical-align:-0.2587em"></span><span class="mord"><span class="mord mathrm">ReLU</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8491em"><span style="top:-2.4413em;margin-left:0em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.063em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2587em"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em"></span></span><span class="base"><span class="strut" style="height:1.0087em;vertical-align:-0.2587em"></span><span class="mord"><span class="mord mathnormal">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6644em"><span style="top:-2.4413em;margin-left:0em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.063em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0269em">w</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2587em"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>，抑制已经被全局天气注意力解释的部分。</li>
+<li><strong>速度冲突 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>R</mi><mi>i</mi><mi>k</mi></msubsup></mrow><annotation encoding="application/x-tex">R_i^k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1078em;vertical-align:-0.2587em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0077em">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8491em"><span style="top:-2.4413em;margin-left:-0.0077em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.063em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2587em"><span></span></span></span></span></span></span></span></span></span>：</strong> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">∥</mo><msubsup><mi>v</mi><mi>i</mi><mi>k</mi></msubsup><mo>−</mo><msubsup><mi>v</mi><mi>i</mi><mi>w</mi></msubsup><msub><mo stretchy="false">∥</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\lVert v_i^k-v_i^w\rVert_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1078em;vertical-align:-0.2587em"></span><span class="mopen">∥</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8491em"><span style="top:-2.4413em;margin-left:-0.0359em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.063em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2587em"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em"></span></span><span class="base"><span class="strut" style="height:1.0087em;vertical-align:-0.2587em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6644em"><span style="top:-2.4413em;margin-left:-0.0359em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.063em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0269em">w</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2587em"><span></span></span></span></span></span></span><span class="mclose"><span class="mclose">∥</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em"><span></span></span></span></span></span></span></span></span></span>，度量局部速度偏离全局天气载体的程度。</li>
+</ul>
+<p>归一化后三者以 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>λ</mi><mi>a</mi></msub><mo separator="true">,</mo><msub><mi>λ</mi><mi>g</mi></msub><mo separator="true">,</mo><msub><mi>λ</mi><mi>r</mi></msub><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mn>0.10</mn><mo separator="true">,</mo><mn>0.70</mn><mo separator="true">,</mo><mn>0.20</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\lambda_a,\lambda_g,\lambda_r)=(0.10,0.70,0.20)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em"></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">a</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord"><span class="mord mathnormal">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em">g</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord"><span class="mord mathnormal">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0278em">r</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em"></span><span class="mopen">(</span><span class="mord">0.10</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord">0.70</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord">0.20</span><span class="mclose">)</span></span></span></span> 加权。模型从一个 10 步早期探测轨迹中汇聚第 4–7 步，并用低空间熵优先的权重强调集中、可靠的冲突响应；随后通过特征亲和传播、阈值化和固定形态学清理获得冲突掩码。多个区域重叠时，每个 token 归给得分最高的区域，使局部分支互斥。</p>
+<figure class="markdown-figure"><img src="../projects/weatherflow/image-3.png" alt="注意力、注意力差与动态速度残差"/><figcaption>注意力、注意力差与动态速度残差</figcaption></figure>
+<p>这里得到的不是完整闭集语义分割，而是<strong>某个语义区域中真正与全局轨迹发生分歧的子集</strong>。掩码在早期步骤上汇聚证据后固定，并只用于限定 SSVP 可以注入局部响应的位置。</p>
+<h3 id="3-ssvp-anchor-隐状态级校正">3. SSVP-Anchor：隐状态级校正</h3>
+<p>Anchor 为主天气轨迹维护隐状态 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>z</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">z_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.044em">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em"><span style="top:-2.55em;margin-left:-0.044em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em"><span></span></span></span></span></span></span></span></span></span>，同时为每个局部类别维护响应状态 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>z</mi><mi>i</mi><mi>k</mi></msubsup></mrow><annotation encoding="application/x-tex">z_i^k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1078em;vertical-align:-0.2587em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.044em">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8491em"><span style="top:-2.4413em;margin-left:-0.044em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.063em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2587em"><span></span></span></span></span></span></span></span></span></span>。在默认早期窗口 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mn>6</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">[0,6)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord">6</span><span class="mclose">)</span></span></span></span> 内：</p>
+<ul>
+<li>局部分支相对全局速度产生暂定残差，并通过以全局速度方向为边界的半空间守卫，削弱明显反向的分量。</li>
+<li>局部状态只允许在冲突掩码内累计类别响应；每一步之后，掩码外 token 都被重新对齐到当前主天气状态。</li>
+<li>主状态不会被局部分支直接覆盖，它只由下一阶段校正后的最终速度推进。</li>
+</ul>
+<p>Anchor 解决的是“从什么隐状态计算局部响应”的问题，防止局部分支在进入主轨迹之前各自漂移。</p>
+<h3 id="4-ssvp-reconcile-速度级校正">4. SSVP-Reconcile：速度级校正</h3>
+<p>Reconcile 决定局部响应怎样进入真正推进主 ODE 的速度：</p>
+<ul>
+<li><strong>冲突区域内：</strong> 允许局部残差进入，但使用局部—全局速度差生成软门控，在全局速度与守卫后的局部速度之间插值。</li>
+<li><strong>冲突区域外：</strong> 将聚合残差投影到全局天气速度的一维方向上，局部提示只能调整全局载体的幅度，不能引入独立的背景方向。</li>
+<li><strong>联合组合：</strong> 以所有冲突掩码的并集切换“区域内局部注入”和“区域外全局方向投影”，得到最终主速度。</li>
+</ul>
+<p>前 6 个步骤完成 Anchor 与 Reconcile 两级校正后，剩余步骤关闭局部分支，回到纯全局天气轨迹完成纹理、色调与大气收敛。</p>
+<h2 id="实验">实验</h2>
+<h3 id="1-实验设置">1. 实验设置</h3>
+<ul>
+<li><strong>数据：</strong> 从 BDD100K、Cityscapes 和 STREET-6K 固定抽取 100 张源图，对每张图应用沙尘、雾、阴天、雨、雪、风暴六类条件，每种方法共生成 600 个源图—天气对。</li>
+<li><strong>模型配置：</strong> FLUX.1 Kontext，28 个采样步，guidance scale 2.8，随机种子 42；默认 SSVP 窗口为前 6 步。核心参数为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>η</mi><mi>k</mi></msub><mo>=</mo><mn>1.25</mn></mrow><annotation encoding="application/x-tex">\eta_k=1.25</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em">η</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em"></span></span><span class="base"><span class="strut" style="height:0.6444em"></span><span class="mord">1.25</span></span></span></span>、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo>=</mo><mn>1.0</mn></mrow><annotation encoding="application/x-tex">\alpha=1.0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em"></span><span class="mord mathnormal" style="margin-right:0.0037em">α</span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em"></span></span><span class="base"><span class="strut" style="height:0.6444em"></span><span class="mord">1.0</span></span></span></span>、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi><mo>=</mo><mn>12.0</mn></mrow><annotation encoding="application/x-tex">\beta=12.0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em"></span><span class="mord mathnormal" style="margin-right:0.0528em">β</span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em"></span></span><span class="base"><span class="strut" style="height:0.6444em"></span><span class="mord">12.0</span></span></span></span>、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>γ</mi><mi>s</mi></msub><mo>=</mo><mn>0.75</mn></mrow><annotation encoding="application/x-tex">\gamma_s=0.75</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0556em">γ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em"><span style="top:-2.55em;margin-left:-0.0556em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em"></span></span><span class="base"><span class="strut" style="height:0.6444em"></span><span class="mord">0.75</span></span></span></span>。</li>
+<li><strong>主指标：</strong> EditScore 的 Semantic Consistency（SC）、Perceptual Quality（PQ）与 Overall；EditReward 的平均奖励、成对偏好率和平均边际；另进行盲测用户研究。</li>
+<li><strong>诊断指标：</strong> SSIM、LPIPS、CLIP 和 PickScore 只用于判断欠编辑或过编辑倾向，不参与主排名，因为高源图相似度可能奖励“几乎没改”的结果。</li>
+</ul>
+<h3 id="2-冲突定位是否可靠">2. 冲突定位是否可靠</h3>
+<p>SegFormer 仅作为评估时的伪参考，不参与 WeatherFlow 推理：</p>
+<p><strong>表 1：冲突区域与 SegFormer 伪参考掩码的重叠</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-scroll"><table><thead><tr><th>类别</th><th style="text-align:right">Mean IoU ↑</th><th style="text-align:right">Mean Dice ↑</th><th style="text-align:right">Precision ↑</th><th style="text-align:right">Recall ↑</th></tr></thead><tbody><tr><td>行人</td><td style="text-align:right">0.5881</td><td style="text-align:right">0.7353</td><td style="text-align:right">0.7355</td><td style="text-align:right">0.7664</td></tr><tr><td>植被</td><td style="text-align:right">0.4338</td><td style="text-align:right">0.5752</td><td style="text-align:right">0.5348</td><td style="text-align:right"><strong>0.8599</strong></td></tr><tr><td>车辆</td><td style="text-align:right">0.4216</td><td style="text-align:right">0.5389</td><td style="text-align:right">0.5427</td><td style="text-align:right">0.7545</td></tr></tbody></table></div>
+<p>行人区域的整体重叠最高；植被召回率高，符合天气敏感区域“漏掉比适度扩张更危险”的特点；车辆波动更大，因为并非每种天气都要求车辆产生同样强的局部响应。</p>
+<figure class="markdown-figure"><img src="../projects/weatherflow/image-4.png" alt="冲突区域与 SegFormer 伪参考区域的重叠"/><figcaption>冲突区域与 SegFormer 伪参考区域的重叠</figcaption></figure>
+<figure class="markdown-figure"><img src="../projects/weatherflow/image-5.png" alt="伪参考掩码与自动追踪掩码的引导效果"/><figcaption>伪参考掩码与自动追踪掩码的引导效果</figcaption></figure>
+<p>用 SegFormer 伪参考掩码替换自动追踪掩码后，示例中的雾、雨和季节变化结果定性相近。该现象支持“定位冲突子区域即可”，但不构成两种掩码在统计意义上等价的结论。</p>
+<h3 id="3-两级投影组件消融">3. 两级投影组件消融</h3>
+<figure class="markdown-figure"><img src="../projects/weatherflow/image-6.png" alt="WeatherFlow 的 Anchor 与 Reconcile 消融"/><figcaption>WeatherFlow 的 Anchor 与 Reconcile 消融</figcaption></figure>
+<ul>
+<li>移除 <strong>Anchor</strong> 后，局部区域仍可编辑，但局部响应状态不再反复对齐共享天气轨迹，导致全局天气一致性下降；EditScore Overall 从完整模型的 7.773 降至 7.583。</li>
+<li>移除 <strong>Reconcile</strong> 后，全局外观仍较连贯，但局部响应无法有效进入主更新速度，沿主轨迹逐渐衰减；Overall 降至 7.411。</li>
+<li>完整模型同时校正隐状态和更新速度，说明两阶段作用不同且互补。对应的完整 SC、PQ 和 Overall 数值保留在论文主比较表中。</li>
+</ul>
+<h3 id="4-为什么只在早期干预">4. 为什么只在早期干预</h3>
+<figure class="markdown-figure"><img src="../projects/weatherflow/image-7.png" alt="SSVP 早期窗口长度消融"/><figcaption>SSVP 早期窗口长度消融</figcaption></figure>
+<p>窗口过短时，局部天气响应不完整；结果在 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>6</mn></mrow><annotation encoding="application/x-tex">x=6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em"></span></span><span class="base"><span class="strut" style="height:0.6444em"></span><span class="mord">6</span></span></span></span> 左右趋于稳定，继续延长到 8–16 步只有轻微视觉变化。</p>
+<figure class="markdown-figure"><img src="../projects/weatherflow/image-8.png" alt="相同 SSVP 操作在不同采样阶段的效果"/><figcaption>相同 SSVP 操作在不同采样阶段的效果</figcaption></figure>
+<p>在 28 步轨迹中，把同样的 SSVP 操作分别放入四个连续的 7 步区间。只有第一个区间 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mn>7</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">[0,7)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord">7</span><span class="mclose">)</span></span></span></span> 能产生实质性的局部天气或季节响应；从第 7 步之后再启动，结果基本贴近未校正的全局轨迹。由此可见，有效性来自<strong>早期位置</strong>而非单纯执行更多步骤，核心干预窗口约为采样过程的前 25%。</p>
+<h3 id="5-效率">5. 效率</h3>
+<p><strong>表 2：28 个采样步下的运行时间（不含预处理和图像 I/O）</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-scroll"><table><thead><tr><th>方法</th><th style="text-align:right">分辨率</th><th>配置</th><th style="text-align:right">采样时间</th></tr></thead><tbody><tr><td>FLUX.1 Kontext</td><td style="text-align:right">512²</td><td>仅全局</td><td style="text-align:right">10.53 s</td></tr><tr><td>Full multi-flow</td><td style="text-align:right">512²</td><td>全局 + 两区域</td><td style="text-align:right">31.58 s</td></tr><tr><td>WeatherFlow</td><td style="text-align:right">512²</td><td>全局 + 两区域，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>6</mn></mrow><annotation encoding="application/x-tex">x=6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em"></span></span><span class="base"><span class="strut" style="height:0.6444em"></span><span class="mord">6</span></span></span></span></td><td style="text-align:right">15.08 s</td></tr><tr><td>FLUX.1 Kontext</td><td style="text-align:right">1024²</td><td>仅全局</td><td style="text-align:right">18.42 s</td></tr><tr><td>Full multi-flow</td><td style="text-align:right">1024²</td><td>全局 + 两区域</td><td style="text-align:right">55.82 s</td></tr><tr><td>WeatherFlow</td><td style="text-align:right">1024²</td><td>全局 + 两区域，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>6</mn></mrow><annotation encoding="application/x-tex">x=6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em"></span></span><span class="base"><span class="strut" style="height:0.6444em"></span><span class="mord">6</span></span></span></span></td><td style="text-align:right">26.35 s</td></tr></tbody></table></div>
+<p>两区域设置下，WeatherFlow 的采样开销约为全局 FLUX.1 Kontext 的 1.43 倍，即增加约 43%；同时在两种分辨率下均比全程 multi-flow 快约 2.1 倍。该数字不包含冲突追踪、图像 I/O 等预处理，因此应理解为采样阶段成本。</p>
+<h3 id="6-与现有方法的主结果">6. 与现有方法的主结果</h3>
+<p><strong>表 3：EditScore 与 EditReward 偏好率的主定量比较</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-scroll"><table><thead><tr><th>方法</th><th>类型</th><th style="text-align:right">SC ↑</th><th style="text-align:right">PQ ↑</th><th style="text-align:right">Overall ↑</th><th style="text-align:right">EditReward 偏好率 ↑</th></tr></thead><tbody><tr><td>FLUX.1 Kontext</td><td>免反演</td><td style="text-align:right"><strong>8.705</strong></td><td style="text-align:right">7.017</td><td style="text-align:right">7.673</td><td style="text-align:right">46.58%</td></tr><tr><td>FLUX.1 Kontext + <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>p</mi><mrow><mi mathvariant="normal">c</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">t</mi></mrow></msup></mrow><annotation encoding="application/x-tex">p^{\mathrm{concat}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.988em;vertical-align:-0.1944em"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7936em"><span style="top:-3.063em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">concat</span></span></span></span></span></span></span></span></span></span></span></span></span></td><td>免反演</td><td style="text-align:right">8.491</td><td style="text-align:right">7.268</td><td style="text-align:right"><u>7.696</u></td><td style="text-align:right">47.46%</td></tr><tr><td>FlowEdit</td><td>免反演</td><td style="text-align:right">6.133</td><td style="text-align:right"><strong>8.602</strong></td><td style="text-align:right">6.843</td><td style="text-align:right">49.32%</td></tr><tr><td>SplitFlow</td><td>免反演</td><td style="text-align:right">7.979</td><td style="text-align:right">7.257</td><td style="text-align:right">7.435</td><td style="text-align:right">47.16%</td></tr><tr><td>FlowAlign</td><td>免反演</td><td style="text-align:right"><u>8.681</u></td><td style="text-align:right">7.027</td><td style="text-align:right">7.640</td><td style="text-align:right">46.39%</td></tr><tr><td>VeloEdit</td><td>免反演</td><td style="text-align:right">2.323</td><td style="text-align:right">7.567</td><td style="text-align:right">2.727</td><td style="text-align:right">50.90%</td></tr><tr><td>FusionEdit</td><td>免反演</td><td style="text-align:right">6.413</td><td style="text-align:right">7.847</td><td style="text-align:right">6.436</td><td style="text-align:right">48.28%</td></tr><tr><td>RF-Inversion</td><td>基于反演</td><td style="text-align:right">2.549</td><td style="text-align:right">7.604</td><td style="text-align:right">3.656</td><td style="text-align:right">48.94%</td></tr><tr><td>RF-Solver</td><td>基于反演</td><td style="text-align:right">4.289</td><td style="text-align:right"><u>8.403</u></td><td style="text-align:right">4.986</td><td style="text-align:right">48.01%</td></tr><tr><td>UniEdit-Flow</td><td>基于反演</td><td style="text-align:right">6.301</td><td style="text-align:right">6.347</td><td style="text-align:right">5.814</td><td style="text-align:right">47.62%</td></tr><tr><td>WeatherEdit</td><td>天气专用</td><td style="text-align:right">8.633</td><td style="text-align:right">7.073</td><td style="text-align:right">7.649</td><td style="text-align:right"><u>60.22%</u></td></tr><tr><td>IntrinsicWeather</td><td>天气专用</td><td style="text-align:right">7.179</td><td style="text-align:right">4.013</td><td style="text-align:right">5.204</td><td style="text-align:right">49.14%</td></tr><tr><td><strong>WeatherFlow</strong></td><td>免反演</td><td style="text-align:right">8.249</td><td style="text-align:right">7.669</td><td style="text-align:right"><strong>7.773</strong></td><td style="text-align:right"><strong>64.86%</strong></td></tr><tr><td>└ w/o Anchor</td><td>免反演</td><td style="text-align:right">7.934</td><td style="text-align:right">7.761</td><td style="text-align:right">7.583</td><td style="text-align:right">—</td></tr><tr><td>└ w/o Reconcile</td><td>免反演</td><td style="text-align:right">7.972</td><td style="text-align:right">7.295</td><td style="text-align:right">7.411</td><td style="text-align:right">—</td></tr></tbody></table></div>
+<p>WeatherFlow 获得最高 EditScore Overall 7.773，比输入完全匹配的“FLUX.1 Kontext + 拼接局部提示”高 0.077。论文将其表述为固定样本上的数值优势，而不宣称该差异具有统计显著性。EditReward 方面，WeatherFlow 的平均奖励为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>9.611</mn><mo>×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>2</mn></mrow></msup></mrow><annotation encoding="application/x-tex">9.611\times10^{-2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em"></span><span class="mord">9.611</span><span class="mspace" style="margin-right:0.2222em"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em"></span></span><span class="base"><span class="strut" style="height:0.8141em"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em"><span style="top:-3.063em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span>，偏好率 64.86%，平均边际 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>15.355</mn><mo>×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>3</mn></mrow></msup></mrow><annotation encoding="application/x-tex">15.355\times10^{-3}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em"></span><span class="mord">15.355</span><span class="mspace" style="margin-right:0.2222em"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em"></span></span><span class="base"><span class="strut" style="height:0.8141em"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em"><span style="top:-3.063em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span></span>，三项均为最高；相较最强基线 WeatherEdit，偏好率提升 4.64 个百分点。</p>
+<p><strong>表 4：完整 EditReward 比较</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-scroll"><table><thead><tr><th>方法</th><th style="text-align:right">Mean Reward ↑（×10⁻²）</th><th style="text-align:right">Preference ↑</th><th style="text-align:right">Avg. Margin ↑（×10⁻³）</th></tr></thead><tbody><tr><td>FlowEdit</td><td style="text-align:right">8.121</td><td style="text-align:right">49.32%</td><td style="text-align:right">-0.962</td></tr><tr><td>SplitFlow</td><td style="text-align:right">7.988</td><td style="text-align:right">47.16%</td><td style="text-align:right">-2.461</td></tr><tr><td>FlowAlign</td><td style="text-align:right">7.910</td><td style="text-align:right">46.39%</td><td style="text-align:right">-3.314</td></tr><tr><td>VeloEdit</td><td style="text-align:right">8.200</td><td style="text-align:right">50.90%</td><td style="text-align:right">-0.138</td></tr><tr><td>RF-Inversion</td><td style="text-align:right">8.113</td><td style="text-align:right">48.94%</td><td style="text-align:right">-1.020</td></tr><tr><td>RF-Solver</td><td style="text-align:right">8.030</td><td style="text-align:right">48.01%</td><td style="text-align:right">-1.961</td></tr><tr><td>UniEdit-Flow</td><td style="text-align:right">8.011</td><td style="text-align:right">47.62%</td><td style="text-align:right">-2.202</td></tr><tr><td>WeatherEdit</td><td style="text-align:right"><u>8.979</u></td><td style="text-align:right"><u>60.22%</u></td><td style="text-align:right"><u>7.318</u></td></tr><tr><td>IntrinsicWeather</td><td style="text-align:right">8.125</td><td style="text-align:right">49.14%</td><td style="text-align:right">-0.964</td></tr><tr><td>FusionEdit</td><td style="text-align:right">8.094</td><td style="text-align:right">48.28%</td><td style="text-align:right">-1.269</td></tr><tr><td>FLUX.1 Kontext</td><td style="text-align:right">7.988</td><td style="text-align:right">46.58%</td><td style="text-align:right">-2.422</td></tr><tr><td>FLUX.1 Kontext + <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>p</mi><mrow><mi mathvariant="normal">c</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">t</mi></mrow></msup></mrow><annotation encoding="application/x-tex">p^{\mathrm{concat}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.988em;vertical-align:-0.1944em"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7936em"><span style="top:-3.063em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">concat</span></span></span></span></span></span></span></span></span></span></span></span></span></td><td style="text-align:right">7.985</td><td style="text-align:right">47.46%</td><td style="text-align:right">-2.458</td></tr><tr><td><strong>WeatherFlow</strong></td><td style="text-align:right"><strong>9.611</strong></td><td style="text-align:right"><strong>64.86%</strong></td><td style="text-align:right"><strong>15.355</strong></td></tr></tbody></table></div>
+<p><strong>表 5：逐天气鲁棒性分析</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-scroll"><table><thead><tr><th>指标</th><th>方法</th><th style="text-align:right">沙尘</th><th style="text-align:right">雾</th><th style="text-align:right">阴天</th><th style="text-align:right">雨</th><th style="text-align:right">雪</th><th style="text-align:right">风暴</th><th style="text-align:right">汇总</th></tr></thead><tbody><tr><td>EditScore Overall ↑</td><td>逐天气最优基线</td><td style="text-align:right">7.036</td><td style="text-align:right"><strong>8.075</strong></td><td style="text-align:right">7.898</td><td style="text-align:right"><strong>8.360</strong></td><td style="text-align:right"><strong>8.420</strong></td><td style="text-align:right">7.728</td><td style="text-align:right"><u>7.696</u></td></tr><tr><td>EditScore Overall ↑</td><td><strong>WeatherFlow</strong></td><td style="text-align:right"><strong>7.459</strong></td><td style="text-align:right">7.960</td><td style="text-align:right"><strong>8.404</strong></td><td style="text-align:right">7.627</td><td style="text-align:right">7.425</td><td style="text-align:right"><strong>7.762</strong></td><td style="text-align:right"><strong>7.773</strong></td></tr><tr><td>EditReward Preference ↑</td><td>逐天气最优基线</td><td style="text-align:right">53.60%</td><td style="text-align:right">58.00%</td><td style="text-align:right">52.40%</td><td style="text-align:right"><strong>60.73%</strong></td><td style="text-align:right">60.82%</td><td style="text-align:right">54.60%</td><td style="text-align:right"><u>60.22%</u></td></tr><tr><td>EditReward Preference ↑</td><td><strong>WeatherFlow</strong></td><td style="text-align:right"><strong>61.80%</strong></td><td style="text-align:right"><strong>58.09%</strong></td><td style="text-align:right"><strong>61.40%</strong></td><td style="text-align:right">56.36%</td><td style="text-align:right"><strong>86.73%</strong></td><td style="text-align:right"><strong>63.00%</strong></td><td style="text-align:right"><strong>64.86%</strong></td></tr></tbody></table></div>
+<p>“逐天气最优基线”是每个天气列中非 WeatherFlow 方法的最优值包络，不是单一竞争系统；汇总列中的 EditScore 基线对应 FLUX.1 Kontext + <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>p</mi><mrow><mi mathvariant="normal">c</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">t</mi></mrow></msup></mrow><annotation encoding="application/x-tex">p^{\mathrm{concat}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.988em;vertical-align:-0.1944em"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7936em"><span style="top:-3.063em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">concat</span></span></span></span></span></span></span></span></span></span></span></span></span>，EditReward 基线对应 WeatherEdit。</p>
+<figure class="markdown-figure"><img src="../projects/weatherflow/image-9.png" alt="WeatherFlow 与多种 Flow 编辑方法的定性比较"/><figcaption>WeatherFlow 与多种 Flow 编辑方法的定性比较</figcaption></figure>
+<p>在雾和阴天中，WeatherFlow 主要协调能见度、照明与远景对比度；在雨和雪中，还会产生湿路反射、屋顶、植被和车辆积雪等局部材质响应。论文同时保留植被未变化、植被被天空替换、树高变化和道路边界漂移等困难案例，并明确将其视为失败。</p>
+<h3 id="7-分天气鲁棒性与用户偏好">7. 分天气鲁棒性与用户偏好</h3>
+<ul>
+<li>WeatherFlow 的 EditScore Overall 在沙尘、阴天和风暴条件下高于逐天气最优基线包络，但在雾、雨和雪上低于该包络。</li>
+<li>EditReward 偏好率在沙尘、雾、阴天、雪和风暴五类上更高，仅雨天低于逐天气最优基线；其中雪天达到 86.73%。需要注意，“逐天气最优基线”每列可能来自不同方法，并不代表一个统一系统。</li>
+<li>盲测用户研究覆盖 21 个案例、54 名参与者，共 1,134 次选择。八路对比面板包含七种 Flow 编辑基线，WeatherFlow 获得 60.4% 的全部选择，并在雾、雪、雨、沙尘四类中都排名第一。该面板没有包含 FLUX.1 Kontext、FusionEdit、WeatherEdit 或 IntrinsicWeather，因此不能用这项人类实验声称胜过主表中的所有方法。</li>
+</ul>
+<p><strong>表 6：八路盲测用户偏好分布</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-scroll"><table><thead><tr><th>方法</th><th style="text-align:right">雾</th><th style="text-align:right">雪</th><th style="text-align:right">雨</th><th style="text-align:right">沙尘</th><th style="text-align:right">总体</th></tr></thead><tbody><tr><td>FlowAlign</td><td style="text-align:right">13.3%</td><td style="text-align:right">8.6%</td><td style="text-align:right">26.9%</td><td style="text-align:right">19.1%</td><td style="text-align:right">16.7%</td></tr><tr><td>FlowEdit</td><td style="text-align:right">7.4%</td><td style="text-align:right">3.7%</td><td style="text-align:right">5.6%</td><td style="text-align:right">5.6%</td><td style="text-align:right">5.6%</td></tr><tr><td>RF-Inversion</td><td style="text-align:right">1.5%</td><td style="text-align:right">4.9%</td><td style="text-align:right">3.4%</td><td style="text-align:right">0.0%</td><td style="text-align:right">2.8%</td></tr><tr><td>RF-Solver</td><td style="text-align:right">2.2%</td><td style="text-align:right">3.4%</td><td style="text-align:right">2.8%</td><td style="text-align:right">0.6%</td><td style="text-align:right">2.5%</td></tr><tr><td>SplitFlow</td><td style="text-align:right">1.9%</td><td style="text-align:right">3.4%</td><td style="text-align:right">11.7%</td><td style="text-align:right">6.8%</td><td style="text-align:right">5.8%</td></tr><tr><td>UniEdit-Flow</td><td style="text-align:right">0.3%</td><td style="text-align:right">4.6%</td><td style="text-align:right">6.2%</td><td style="text-align:right">0.0%</td><td style="text-align:right">3.2%</td></tr><tr><td>VeloEdit</td><td style="text-align:right">1.2%</td><td style="text-align:right">0.9%</td><td style="text-align:right">0.3%</td><td style="text-align:right">16.7%</td><td style="text-align:right">3.1%</td></tr><tr><td><strong>WeatherFlow</strong></td><td style="text-align:right"><strong>72.2%</strong></td><td style="text-align:right"><strong>70.4%</strong></td><td style="text-align:right"><strong>43.2%</strong></td><td style="text-align:right"><strong>51.2%</strong></td><td style="text-align:right"><strong>60.4%</strong></td></tr></tbody></table></div>
+<h3 id="8-天气之外的探索性泛化">8. 天气之外的探索性泛化</h3>
+<figure class="markdown-figure"><img src="../projects/weatherflow/image-10.png" alt="WeatherFlow 在 COCO 上的局部物体编辑"/><figcaption>WeatherFlow 在 COCO 上的局部物体编辑</figcaption></figure>
+<p>在 COCO 上，WeatherFlow 可以将颜色、材质或局部外观变化集中于红色轮廓标出的目标，并大体保持周围人物、物体和场景结构。</p>
+<figure class="markdown-figure"><img src="../projects/weatherflow/image-11.png" alt="WeatherFlow 在 Fashionpedia 上的服装编辑"/><figcaption>WeatherFlow 在 Fashionpedia 上的服装编辑</figcaption></figure>
+<p>在 Fashionpedia 上，模型能够修改上衣、外套、裙子、裤子等服装的类别、颜色或材质，同时大体保持身份、姿态、身体结构和背景。这些仅是局部—全局协调的压力测试，不构成通用编辑基准上的排名结论。</p>
+<h2 id="局限">局限</h2>
+<ul>
+<li>SSVC 是与观测伪影一致的诊断抽象，现有实验尚不能证明它是所有失败的唯一原因；更强的因果验证需要独立标注的高/低冲突对照。</li>
+<li>方法依赖自动提示词库的类别覆盖和措辞质量。缺失或含糊的响应可能让区域不变化，过宽的描述可能激活多余区域。</li>
+<li>内容漂移仍未完全消除，包括植被被天空替换、树木变高、道路或建筑边界移动、同类实例支持区域合并，以及相关区域保持不变。</li>
+<li>默认设置相对纯全局编辑增加约 43% 的采样开销；单图零样本系统也无法替代具备额外训练与场景表示的天气专用视频或 3D/4D 方法在物理渲染和时序一致性上的优势。</li>
+</ul>
+<h2 id="项目贡献总结">项目贡献总结</h2>
+<ul>
+<li>定义 Rectified-Flow 天气编辑中的语义—风格速度冲突 SSVC。</li>
+<li>提出无需人工掩码或外部分割器的 Conflict Region Tracing，联合注意力差与速度冲突定位干预区域。</li>
+<li>提出 SSVP，以 Anchor 校正局部隐状态、以 Reconcile 校正真正推进主轨迹的速度。</li>
+<li>通过时间受控实验验证冲突校正主要在采样前 25% 有效，并在 EditScore、EditReward 与盲测用户研究中取得领先结果。</li>
+</ul>
+<h2 id="完整论文">完整论文</h2>
+<p><strong>WeatherFlow: Resolving Semantic-Style Velocity Conflict via Fluid-Inspired Velocity Projection</strong></p>
+<p><strong>Chi Zhang, Yuchen Li, Zhiwen Hu, Meng Yuan, Gang Hua</strong></p>
+<div class="paper-actions">
+  <a href="../papers/weatherflow.pdf" target="_blank" rel="noreferrer">Open full PDF</a>
+  <a href="../papers/weatherflow.pdf" download="WeatherFlow_main.pdf">Download PDF</a>
+</div>
+<p>为避免部分浏览器无法加载内嵌 PDF，下面同时提供完整 11 页的逐页阅读版本。原始 PDF 仍可通过上方按钮打开或下载。</p>
+<figure class="markdown-figure"><img src="../projects/weatherflow/paper-pages/page-01.jpg" alt="WeatherFlow 论文第 1 页"/><figcaption>WeatherFlow 论文第 1 页</figcaption></figure>
+<figure class="markdown-figure"><img src="../projects/weatherflow/paper-pages/page-02.jpg" alt="WeatherFlow 论文第 2 页"/><figcaption>WeatherFlow 论文第 2 页</figcaption></figure>
+<figure class="markdown-figure"><img src="../projects/weatherflow/paper-pages/page-03.jpg" alt="WeatherFlow 论文第 3 页"/><figcaption>WeatherFlow 论文第 3 页</figcaption></figure>
+<figure class="markdown-figure"><img src="../projects/weatherflow/paper-pages/page-04.jpg" alt="WeatherFlow 论文第 4 页"/><figcaption>WeatherFlow 论文第 4 页</figcaption></figure>
+<figure class="markdown-figure"><img src="../projects/weatherflow/paper-pages/page-05.jpg" alt="WeatherFlow 论文第 5 页"/><figcaption>WeatherFlow 论文第 5 页</figcaption></figure>
+<figure class="markdown-figure"><img src="../projects/weatherflow/paper-pages/page-06.jpg" alt="WeatherFlow 论文第 6 页"/><figcaption>WeatherFlow 论文第 6 页</figcaption></figure>
+<figure class="markdown-figure"><img src="../projects/weatherflow/paper-pages/page-07.jpg" alt="WeatherFlow 论文第 7 页"/><figcaption>WeatherFlow 论文第 7 页</figcaption></figure>
+<figure class="markdown-figure"><img src="../projects/weatherflow/paper-pages/page-08.jpg" alt="WeatherFlow 论文第 8 页"/><figcaption>WeatherFlow 论文第 8 页</figcaption></figure>
+<figure class="markdown-figure"><img src="../projects/weatherflow/paper-pages/page-09.jpg" alt="WeatherFlow 论文第 9 页"/><figcaption>WeatherFlow 论文第 9 页</figcaption></figure>
+<figure class="markdown-figure"><img src="../projects/weatherflow/paper-pages/page-10.jpg" alt="WeatherFlow 论文第 10 页"/><figcaption>WeatherFlow 论文第 10 页</figcaption></figure>
+<figure class="markdown-figure"><img src="../projects/weatherflow/paper-pages/page-11.jpg" alt="WeatherFlow 论文第 11 页"/><figcaption>WeatherFlow 论文第 11 页</figcaption></figure></article><aside class="project-toc" aria-label="文章目录"><p>Contents</p><nav><a href="#背景" class="toc-level-2 is-active" aria-current="location">背景</a><a href="#问题-semantic-style-velocity-conflict" class="toc-level-2 ">问题：Semantic–Style Velocity Conflict</a><a href="#insight" class="toc-level-2 ">Insight</a><a href="#方法" class="toc-level-2 ">方法</a><a href="#1-自动局部提示词与输入协议" class="toc-level-3 ">1. 自动局部提示词与输入协议</a><a href="#2-conflict-region-tracing-冲突区域追踪" class="toc-level-3 ">2. Conflict Region Tracing：冲突区域追踪</a><a href="#3-ssvp-anchor-隐状态级校正" class="toc-level-3 ">3. SSVP-Anchor：隐状态级校正</a><a href="#4-ssvp-reconcile-速度级校正" class="toc-level-3 ">4. SSVP-Reconcile：速度级校正</a><a href="#实验" class="toc-level-2 ">实验</a><a href="#1-实验设置" class="toc-level-3 ">1. 实验设置</a><a href="#2-冲突定位是否可靠" class="toc-level-3 ">2. 冲突定位是否可靠</a><a href="#3-两级投影组件消融" class="toc-level-3 ">3. 两级投影组件消融</a><a href="#4-为什么只在早期干预" class="toc-level-3 ">4. 为什么只在早期干预</a><a href="#5-效率" class="toc-level-3 ">5. 效率</a><a href="#6-与现有方法的主结果" class="toc-level-3 ">6. 与现有方法的主结果</a><a href="#7-分天气鲁棒性与用户偏好" class="toc-level-3 ">7. 分天气鲁棒性与用户偏好</a><a href="#8-天气之外的探索性泛化" class="toc-level-3 ">8. 天气之外的探索性泛化</a><a href="#局限" class="toc-level-2 ">局限</a><a href="#项目贡献总结" class="toc-level-2 ">项目贡献总结</a><a href="#完整论文" class="toc-level-2 ">完整论文</a></nav></aside></div></main></body></html>

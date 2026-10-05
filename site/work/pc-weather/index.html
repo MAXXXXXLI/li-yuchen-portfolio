@@ -1,0 +1,543 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="image" href="../../projects/pc-weather/paper-pages/page-03.jpg"/><link rel="preload" as="image" href="../../projects/pc-weather/paper-pages/page-04.jpg"/><link rel="preload" as="image" href="../../projects/pc-weather/paper-pages/page-05.jpg"/><link rel="preload" as="image" href="../../projects/pc-weather/paper-pages/page-06.jpg"/><link rel="preload" as="image" href="../../projects/pc-weather/paper-pages/page-07.jpg"/><link rel="preload" as="image" href="../../projects/pc-weather/paper-pages/page-08.jpg"/><link rel="preload" as="image" href="../../projects/pc-weather/paper-pages/page-09.jpg"/><link rel="preload" as="image" href="../../projects/pc-weather/paper-pages/page-10.jpg"/><link rel="stylesheet" href="../../_next/static/css/index.BlEUNAtn.css" data-rsc-css-href="../../_next/static/css/index.BlEUNAtn.css" data-precedence="vite-rsc/importer-resources"/><title>PC-Weather｜李昱辰</title><meta name="description" content="用反照率稳定材质身份，用区域指令描述道路、车辆、植被等不同响应，再在速度空间注入必要的局部变化。"/><meta property="og:title" content="李昱辰｜生成式模型研究"/><meta property="og:description" content="Diffusion · Flow Matching · Controllable Generation"/><meta property="og:type" content="website"/><meta property="og:image" content="https://maxxxxxli.github.io/li-yuchen-portfolio/og.png"/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta property="og:image:alt" content="Li Yuchen Generative AI Research"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="李昱辰｜生成式模型研究"/><meta name="twitter:description" content="Diffusion · Flow Matching · Controllable Generation"/><meta name="twitter:image" content="https://maxxxxxli.github.io/li-yuchen-portfolio/og.png"/>
+<link rel="preload" href="../../_next/static/_vinext_fonts/geist-8ac0455e797f/geist-98bbbccb.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="../../_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2" as="font" type="font/woff2" crossorigin />
+<style data-vinext-fonts>/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(../../_next/static/_vinext_fonts/geist-8ac0455e797f/geist-ff2310f5.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(../../_next/static/_vinext_fonts/geist-8ac0455e797f/geist-875ccdd4.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(../../_next/static/_vinext_fonts/geist-8ac0455e797f/geist-52306abf.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(../../_next/static/_vinext_fonts/geist-8ac0455e797f/geist-001175b1.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(../../_next/static/_vinext_fonts/geist-8ac0455e797f/geist-98bbbccb.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Geist Fallback';
+  src: local("Arial");
+  ascent-override: 95.94%;
+  descent-override: 28.16%;
+  line-gap-override: 0.00%;
+  size-adjust: 104.76%;
+}
+
+.__font_geist_19ysh9d { font-family: 'Geist', 'Geist Fallback'; font-style: normal; }
+
+.__variable_geist_19ysh9d { --font-geist-sans: 'Geist', 'Geist Fallback'; }
+
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(../../_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-f6b33328.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(../../_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-44e03052.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* symbols2 */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(../../_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-0638449e.woff2) format('woff2');
+  unicode-range: U+2000-2001, U+2004-2008, U+200A, U+23B8-23BD, U+2500-259F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(../../_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-971fb274.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(../../_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-44745446.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(../../_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Geist Mono Fallback';
+  src: local("Arial");
+  ascent-override: 74.67%;
+  descent-override: 21.92%;
+  line-gap-override: 0.00%;
+  size-adjust: 134.59%;
+}
+
+.__font_geist_mono_1001rt9 { font-family: 'Geist Mono', 'Geist Mono Fallback'; font-style: normal; }
+
+.__variable_geist_mono_1001rt9 { --font-geist-mono: 'Geist Mono', 'Geist Mono Fallback'; }
+</style>
+</head><body class="__variable_geist_19ysh9d __variable_geist_mono_1001rt9"><main class="markdown-page"><header class="project-topbar"><a href="../../index.html#work">← Back</a><span>T-MM 在投 · 学生二作</span><a href="#top">Top ↑</a></header><div class="project-shell" id="top"><article class="markdown-article"><h1>PC-Weather</h1>
+<h2 id="背景">背景</h2>
+<ul>
+<li><strong>应用背景：</strong> 自动驾驶感知模型主要依赖晴天数据训练，但雨、雪、雾、沙尘等恶劣天气会改变能见度、照明、道路反射、植被状态以及车辆与行人的局部外观。真实恶劣天气数据采集和标注成本高、风险大，因此，将晴天街景转换成结构可信、标签仍可复用的恶劣天气图像，是构建鲁棒感知系统的重要路径。</li>
+<li><strong>现有方法的局限：</strong> GAN、天气专用扩散模型、视频或 3D/4D 天气系统通常需要额外天气数据、模型训练、适配器或场景重建。通用免训练编辑器虽然能直接处理单张图像，但仅依靠源 RGB 图像和一条全局天气指令，很难同时实现强天气效果、材质身份保持和安全关键结构稳定。</li>
+<li><strong>核心矛盾：</strong> 天气编辑并非整幅图的统一风格迁移。道路几何和车道线应保持不变，但路面反射或积雪需要改变；车辆的类别、数量、位置和形状应保留，但其照明、表面状态和可见度需要适应目标天气。因此，它本质上是一个<strong>空间非均匀的“保留—重建”平衡问题</strong>。</li>
+</ul>
+<figure class="markdown-figure"><img src="../../projects/pc-weather/image.png" alt="PC-Weather 的问题动机与区域化天气响应"/><figcaption>PC-Weather 的问题动机与区域化天气响应</figcaption></figure>
+<h2 id="问题">问题</h2>
+<p>PC-Weather 将天气编辑中的困难归纳为两个相互耦合的歧义：</p>
+<ul>
+<li><strong>保留参考的歧义：</strong> 源 RGB 图像把材质反射与原天气照明混合在一起。若直接用源图强约束内容，模型可能把晴天阴影、强光等过时天气线索一起保留；若减弱约束，车辆颜色、材质身份和结构边界又容易漂移。</li>
+<li><strong>全局指令的歧义：</strong> “把天气变成下雪/下雨”只规定整体目标，没有说明道路、车辆、行人、植被、建筑和天空各自应如何响应。统一强度的全局改写会让部分区域欠编辑、另一些区域过编辑。</li>
+</ul>
+<p>典型失败表现为：FLUX.1 Kontext 可以生成完整雪景，但行人仍保持明显的晴天外观；IntrinsicWeather 能生成强烈雨景，却可能改变车辆身份、建筑外观或道路结构。PC-Weather 的目标是在不改变安全关键几何和物体身份的前提下，让各语义区域产生不同类型、不同强度的天气响应。</p>
+<h2 id="insight">Insight</h2>
+<ol>
+<li><strong>用反照率辅助材质保留。</strong> 反照率不被视为精确物理真值，而是一种相对减少光照影响的软参考，用来稳定材质颜色和结构边界。</li>
+<li><strong>用区域条件表达天气的异质响应。</strong> 道路与车辆属于几何敏感区域，应重点改变表面、反射和照明并保留形状；天空与植被属于天气敏感区域，可以允许更强的外观或状态变化。</li>
+<li><strong>在速度空间组合局部变化。</strong> 全局分支提供统一、稳定的场景运输方向；每个区域分支只能以“相对全局速度的残差”影响自身语义掩码内的 token，不能独立演化成另一张图。</li>
+</ol>
+<h2 id="方法">方法</h2>
+<figure class="markdown-figure"><img src="../../projects/pc-weather/image-1.png" alt="PC-Weather 总体框架"/><figcaption>PC-Weather 总体框架</figcaption></figure>
+<p>PC-Weather 建立在冻结的 FLUX.1 Kontext 上，只改变每一步采样采用的瞬时速度，不修改模型参数、噪声日程或 ODE 求解器。整体由三个部分组成。</p>
+<h3 id="1-intrinsic-anchoring-全局内在属性锚定">1. Intrinsic Anchoring：全局内在属性锚定</h3>
+<ul>
+<li>使用冻结的 Marigold-IID-Appearance 从源图 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em"></span><span class="mord mathnormal" style="margin-right:0.0785em">I</span></span></span></span> 估计反照率图 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em"></span><span class="mord mathnormal">A</span></span></span></span>。</li>
+<li>将源图编码为源图 token <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold">s</mi></mrow><annotation encoding="application/x-tex">\mathbf{s}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4444em"></span><span class="mord mathbf">s</span></span></span></span>，将反照率图编码为独立参考 token <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold">r</mi></mrow><annotation encoding="application/x-tex">\mathbf{r}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4444em"></span><span class="mord mathbf">r</span></span></span></span>，并通过不同的位置标识保持二者角色分离。</li>
+<li>全局分支同时接收源图、反照率参考与全局天气指令，预测全局参考速度 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi mathvariant="bold">v</mi><mi>i</mi><mi>w</mi></msubsup></mrow><annotation encoding="application/x-tex">\mathbf{v}_i^w</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9231em;vertical-align:-0.2587em"></span><span class="mord"><span class="mord mathbf" style="margin-right:0.016em">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6644em"><span style="top:-2.4413em;margin-left:-0.016em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.063em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0269em">w</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2587em"><span></span></span></span></span></span></span></span></span></span>。反照率仅进入全局分支，避免过强的保留先验压制局部天气生成。</li>
+</ul>
+<p>这一设计把“原图中有什么”和“原天气如何照亮它”部分解耦，使全局轨迹能够稳定物体身份、材质颜色和结构边界，同时为目标天气照明留出空间。</p>
+<h3 id="2-regional-instruction-refinement-区域指令细化">2. Regional Instruction Refinement：区域指令细化</h3>
+<ul>
+<li>使用 Qwen3 将全局天气指令 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>p</mi><mi>w</mi></msup></mrow><annotation encoding="application/x-tex">p^w</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8588em;vertical-align:-0.1944em"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em"><span style="top:-3.063em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0269em">w</span></span></span></span></span></span></span></span></span></span></span> 与语义类别 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi><mi>k</mi></msub></mrow><annotation encoding="application/x-tex">c_k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em"><span></span></span></span></span></span></span></span></span></span> 组合，生成区域指令 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>p</mi><mi>k</mi></msup></mrow><annotation encoding="application/x-tex">p^k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0435em;vertical-align:-0.1944em"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491em"><span style="top:-3.063em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em">k</span></span></span></span></span></span></span></span></span></span></span>。例如，下雨时道路需要湿润、反光，车辆需要降低高光但不能改变颜色和形状。</li>
+<li>使用冻结的 Mask2Former 生成语义标签图，并为道路、车辆、行人、植被、建筑、天空等类别构造二值掩码 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>M</mi><mi>k</mi></msup></mrow><annotation encoding="application/x-tex">M^k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8491em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.109em">M</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491em"><span style="top:-3.063em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em">k</span></span></span></span></span></span></span></span></span></span></span>。</li>
+<li>区域分支保留源图上下文，但不接收反照率 token，从而可以表达比全局分支更强的类别相关变化。</li>
+</ul>
+<h3 id="3-region-aware-velocity-composition-区域感知速度组合">3. Region-Aware Velocity Composition：区域感知速度组合</h3>
+<p>在与全局分支相同的隐状态和时间步上计算第 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em"></span><span class="mord mathnormal" style="margin-right:0.0315em">k</span></span></span></span> 个区域的局部速度 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi mathvariant="bold">v</mi><mi>i</mi><mi>k</mi></msubsup></mrow><annotation encoding="application/x-tex">\mathbf{v}_i^k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1078em;vertical-align:-0.2587em"></span><span class="mord"><span class="mord mathbf" style="margin-right:0.016em">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8491em"><span style="top:-2.4413em;margin-left:-0.016em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.063em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2587em"><span></span></span></span></span></span></span></span></span></span>，并将局部条件引起的变化表示为：</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="normal">Δ</mi><msubsup><mi mathvariant="bold">v</mi><mi>i</mi><mi>k</mi></msubsup><mo>=</mo><msubsup><mi mathvariant="bold">v</mi><mi>i</mi><mi>k</mi></msubsup><mo>−</mo><msubsup><mi mathvariant="bold">v</mi><mi>i</mi><mi>w</mi></msubsup><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">
+\Delta \mathbf{v}_i^k=\mathbf{v}_i^k-\mathbf{v}_i^w.
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1461em;vertical-align:-0.247em"></span><span class="mord">Δ</span><span class="mord"><span class="mord mathbf" style="margin-right:0.016em">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8991em"><span style="top:-2.453em;margin-left:-0.016em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.113em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em"></span></span><span class="base"><span class="strut" style="height:1.1461em;vertical-align:-0.247em"></span><span class="mord"><span class="mord mathbf" style="margin-right:0.016em">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8991em"><span style="top:-2.453em;margin-left:-0.016em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.113em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em"></span></span><span class="base"><span class="strut" style="height:0.9614em;vertical-align:-0.247em"></span><span class="mord"><span class="mord mathbf" style="margin-right:0.016em">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7144em"><span style="top:-2.453em;margin-left:-0.016em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.113em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0269em">w</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em"><span></span></span></span></span></span></span><span class="mord">.</span></span></span></span></span>
+<p>随后根据 token 级速度差异 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>d</mi><mi>i</mi><mi>k</mi></msubsup><mo stretchy="false">(</mo><mi>j</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">∥</mo><mi mathvariant="normal">Δ</mi><msubsup><mi mathvariant="bold">v</mi><mi>i</mi><mi>k</mi></msubsup><mo stretchy="false">(</mo><mi>j</mi><mo stretchy="false">)</mo><msub><mo stretchy="false">∥</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">d_i^k(j)=\lVert\Delta\mathbf{v}_i^k(j)\rVert_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1078em;vertical-align:-0.2587em"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8491em"><span style="top:-2.4413em;margin-left:0em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.063em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2587em"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0572em">j</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em"></span></span><span class="base"><span class="strut" style="height:1.1078em;vertical-align:-0.2587em"></span><span class="mopen">∥</span><span class="mord">Δ</span><span class="mord"><span class="mord mathbf" style="margin-right:0.016em">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8491em"><span style="top:-2.4413em;margin-left:-0.016em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.063em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2587em"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0572em">j</span><span class="mclose">)</span><span class="mclose"><span class="mclose">∥</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em"><span></span></span></span></span></span></span></span></span></span> 生成平滑门控 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>ω</mi><mi>i</mi><mi>k</mi></msubsup><mo stretchy="false">(</mo><mi>j</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\omega_i^k(j)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1078em;vertical-align:-0.2587em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em">ω</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8491em"><span style="top:-2.4413em;margin-left:-0.0359em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.063em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2587em"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0572em">j</span><span class="mclose">)</span></span></span></span>，最终组合速度为：</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi mathvariant="bold">v</mi><mi>i</mi></msub><mo>=</mo><msubsup><mi mathvariant="bold">v</mi><mi>i</mi><mi>w</mi></msubsup><mo>+</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>K</mi></munderover><msup><mi mathvariant="bold">m</mi><mi>k</mi></msup><mo>⊙</mo><msub><mi>α</mi><mi>i</mi></msub><msubsup><mi>ω</mi><mi>i</mi><mi>k</mi></msubsup><mo>⊙</mo><mi mathvariant="normal">Δ</mi><msubsup><mi mathvariant="bold">v</mi><mi>i</mi><mi>k</mi></msubsup><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">
+\mathbf{v}_i=\mathbf{v}_i^w+\sum_{k=1}^{K}\mathbf{m}^k\odot\alpha_i\omega_i^k\odot\Delta\mathbf{v}_i^k.
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5944em;vertical-align:-0.15em"></span><span class="mord"><span class="mord mathbf" style="margin-right:0.016em">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em"><span style="top:-2.55em;margin-left:-0.016em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em"></span></span><span class="base"><span class="strut" style="height:0.9614em;vertical-align:-0.247em"></span><span class="mord"><span class="mord mathbf" style="margin-right:0.016em">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7144em"><span style="top:-2.453em;margin-left:-0.016em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.113em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0269em">w</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em"></span></span><span class="base"><span class="strut" style="height:3.1304em;vertical-align:-1.3021em"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8283em"><span style="top:-1.8479em;margin-left:0em"><span class="pstrut" style="height:3.05em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em">k</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.05em"><span class="pstrut" style="height:3.05em"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em"><span class="pstrut" style="height:3.05em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0715em">K</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.3021em"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord"><span class="mord mathbf">m</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991em"><span style="top:-3.113em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em">k</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em"></span><span class="mbin">⊙</span><span class="mspace" style="margin-right:0.2222em"></span></span><span class="base"><span class="strut" style="height:1.1461em;vertical-align:-0.247em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0037em">α</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em"><span style="top:-2.55em;margin-left:-0.0037em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em">ω</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8991em"><span style="top:-2.453em;margin-left:-0.0359em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.113em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em"></span><span class="mbin">⊙</span><span class="mspace" style="margin-right:0.2222em"></span></span><span class="base"><span class="strut" style="height:1.1461em;vertical-align:-0.247em"></span><span class="mord">Δ</span><span class="mord"><span class="mord mathbf" style="margin-right:0.016em">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8991em"><span style="top:-2.453em;margin-left:-0.016em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.113em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em"><span></span></span></span></span></span></span><span class="mord">.</span></span></span></span></span>
+<p>语义掩码保证区域外的速度严格等于全局速度；编辑系数 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>α</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">\alpha_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0037em">α</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em"><span style="top:-2.55em;margin-left:-0.0037em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em"><span></span></span></span></span></span></span></span></span></span> 控制整体局部强度；差异门控避免整个掩码使用同一修正强度而形成突兀边界。所有局部效果都围绕一条全局锚定轨迹产生，不会形成彼此失配的独立区域轨迹。</p>
+<h2 id="实验">实验</h2>
+<h3 id="1-实验设置与评价口径">1. 实验设置与评价口径</h3>
+<ul>
+<li><strong>数据：</strong> 从 STREET-6K、BDD100K 和 Cityscapes 随机抽取共 492 张真实街景图像。</li>
+<li><strong>对比方法：</strong> InstructPix2Pix、RGB↔X、FLUX.1 Kontext、ICEdit、IntrinsicWeather。</li>
+<li><strong>自动评价：</strong> 使用 Qwen3-VL-Plus 按 0–10 分评价 Success（目标天气实现程度）、Overedit（源场景与物体身份保留）和 Realism（照片真实感、物理一致性与伪影抑制）；另以 PickScore 衡量人类偏好对齐的视觉质量。</li>
+<li><strong>评价原则：</strong> 天气迁移会主动改变亮度、色调和大气状态，PSNR、SSIM、LPIPS 容易把合理的跨天气变化误判为重建误差，因此不作为主排名指标。</li>
+</ul>
+<h3 id="2-与主流编辑方法的比较">2. 与主流编辑方法的比较</h3>
+<figure class="markdown-figure"><img src="../../projects/pc-weather/image-2.png" alt="PC-Weather 与编辑基线的定性比较"/><figcaption>PC-Weather 与编辑基线的定性比较</figcaption></figure>
+<ul>
+<li><strong>雪天：</strong> 多数方法要么保留晴天阴影和植被状态，要么改变车辆颜色；PC-Weather 能同时处理道路、植被、车辆和行人的冬季响应，并保持布局与车辆身份。</li>
+<li><strong>雨天：</strong> 部分强编辑方法虽然雨势明显，却破坏车辆与街景结构；PC-Weather 同时生成降雨、湿路面和空间一致的反射，并保留车辆、建筑和道路几何。</li>
+<li><strong>雾天：</strong> PC-Weather 产生随深度变化的能见度衰减，而不是叠加均匀灰幕；远处内容对比度下降更强，并能触发车辆灯光等符合语境的响应。</li>
+<li><strong>晴天：</strong> 模型可以完成全局增亮和方向一致的阴影变化，同时保持源场景几何。</li>
+</ul>
+<p><strong>表 1：真实交通场景天气编辑的定量比较</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-scroll"><table><thead><tr><th>方法</th><th style="text-align:right">Success ↑</th><th style="text-align:right">Overedit ↑</th><th style="text-align:right">Realism ↑</th><th style="text-align:right">PickScore ↑</th></tr></thead><tbody><tr><td>RGB↔X</td><td style="text-align:right">4.455</td><td style="text-align:right">3.441</td><td style="text-align:right">2.786</td><td style="text-align:right">19.985</td></tr><tr><td>FLUX.1 Kontext</td><td style="text-align:right">9.214</td><td style="text-align:right"><strong>8.828</strong></td><td style="text-align:right"><strong>7.726</strong></td><td style="text-align:right">20.770</td></tr><tr><td>InstructPix2Pix</td><td style="text-align:right">5.737</td><td style="text-align:right">7.757</td><td style="text-align:right">6.348</td><td style="text-align:right">20.025</td></tr><tr><td>ICEdit</td><td style="text-align:right">8.463</td><td style="text-align:right">7.913</td><td style="text-align:right">6.909</td><td style="text-align:right">20.814</td></tr><tr><td>IntrinsicWeather</td><td style="text-align:right">8.654</td><td style="text-align:right">6.196</td><td style="text-align:right">6.078</td><td style="text-align:right"><strong>21.193</strong></td></tr><tr><td><strong>PC-Weather</strong></td><td style="text-align:right"><strong>9.640</strong></td><td style="text-align:right">8.318</td><td style="text-align:right">7.647</td><td style="text-align:right">20.948</td></tr></tbody></table></div>
+<p>PC-Weather 是唯一在四项指标中都进入前两名的方法。Success 达到 9.640，比最强基线 FLUX.1 Kontext 高 0.426；Overedit 和 Realism 分别仅低 0.510 与 0.079，说明天气完成度的提升并非来自无差别重绘。</p>
+<h3 id="3-用户研究">3. 用户研究</h3>
+<p>17 名参与者在随机并排设置下完成 784 次强制选择，综合考虑真实感、指令一致性和伪影。该研究完成时尚未加入 IntrinsicWeather 和雾天，因此只覆盖雪、雨、晴三种天气。</p>
+<p><strong>表 2：不同天气条件下的用户偏好率（%）</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-scroll"><table><thead><tr><th>方法</th><th style="text-align:right">雪天</th><th style="text-align:right">雨天</th><th style="text-align:right">晴天</th><th style="text-align:right">平均偏好率</th></tr></thead><tbody><tr><td>FLUX.1 Kontext</td><td style="text-align:right">26.2%</td><td style="text-align:right">11.0%</td><td style="text-align:right">22.3%</td><td style="text-align:right">19.8%</td></tr><tr><td>InstructPix2Pix</td><td style="text-align:right">1.9%</td><td style="text-align:right">11.0%</td><td style="text-align:right">5.6%</td><td style="text-align:right">6.2%</td></tr><tr><td>ICEdit</td><td style="text-align:right">35.4%</td><td style="text-align:right">23.4%</td><td style="text-align:right">1.6%</td><td style="text-align:right">20.1%</td></tr><tr><td><strong>PC-Weather</strong></td><td style="text-align:right"><strong>36.5%</strong></td><td style="text-align:right"><strong>54.6%</strong></td><td style="text-align:right"><strong>70.5%</strong></td><td style="text-align:right"><strong>53.9%</strong></td></tr></tbody></table></div>
+<p>PC-Weather 在三种天气下均获得最高偏好，总体偏好率比第二名 ICEdit 高 33.8 个百分点；雪天优势较小，但在雨天和晴天分别领先 31.2 与 48.2 个百分点。</p>
+<h3 id="4-组件消融-ia-与-rvc">4. 组件消融：IA 与 RVC</h3>
+<p>消融实验在 100 张图像上进行：</p>
+<p><strong>表 3：Intrinsic Anchoring（IA）与 Region-Aware Velocity Composition（RVC）的定量消融</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-scroll"><table><thead><tr><th>配置</th><th style="text-align:right">Success ↑</th><th style="text-align:right">Overedit ↑</th><th style="text-align:right">Realism ↑</th><th style="text-align:right">MLLM Avg. ↑</th><th style="text-align:right">PickScore ↑</th></tr></thead><tbody><tr><td><strong>PC-Weather</strong></td><td style="text-align:right"><strong>9.610</strong></td><td style="text-align:right">7.860</td><td style="text-align:right">6.920</td><td style="text-align:right"><strong>8.130</strong></td><td style="text-align:right"><strong>21.518</strong></td></tr><tr><td>w/o IA</td><td style="text-align:right">9.160</td><td style="text-align:right"><strong>8.080</strong></td><td style="text-align:right"><strong>6.980</strong></td><td style="text-align:right">8.073</td><td style="text-align:right">21.505</td></tr><tr><td>w/o RVC</td><td style="text-align:right">9.490</td><td style="text-align:right">7.860</td><td style="text-align:right">6.820</td><td style="text-align:right">8.057</td><td style="text-align:right">21.469</td></tr></tbody></table></div>
+<figure class="markdown-figure"><img src="../../projects/pc-weather/image-3.png" alt="PC-Weather 组件消融"/><figcaption>PC-Weather 组件消融</figcaption></figure>
+<ul>
+<li><strong>移除 IA：</strong> 保守的内容保留指标略升，但目标天气完成度下降；定性上会出现车辆颜色漂移，或把夏季树冠机械涂白而未形成合理冬季状态。</li>
+<li><strong>移除 RVC：</strong> 不同区域的编辑强度失衡，可能残留绿色植被，也可能让积雪团块遮蔽枝干结构。</li>
+<li><strong>完整模型：</strong> IA 稳定材质与结构身份，RVC 决定天气变化应发生在哪里、以多大强度发生。</li>
+</ul>
+<h3 id="5-合成数据对真实恶劣天气检测的作用">5. 合成数据对真实恶劣天气检测的作用</h3>
+<figure class="markdown-figure"><img src="../../projects/pc-weather/image-4.png" alt="PC-Weather 生成的下游训练样本"/><figcaption>PC-Weather 生成的下游训练样本</figcaption></figure>
+<p>从 Cityscapes 抽取 1,500 张晴天图像，分别转换为雪、雨、雾和沙尘，每种方法得到 6,000 张合成训练图。所有方法沿用同一批源图和同一套由固定检测器产生的车辆伪标签，因此结果同时反映天气逼真度与合成过程中的几何漂移。</p>
+<p>实验覆盖 YOLOv10、YOLOv11、YOLOv12 三代模型，并分别采用从头训练的小模型协议和预训练大模型微调协议；所有模型只在合成数据上训练，随后直接测试真实 DAWN 与 ACDC，不使用目标域图像或标注。</p>
+<p><strong>表 4：真实恶劣天气测试集上的跨数据集车辆检测</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-scroll"><table><thead><tr><th>训练协议</th><th>测试集</th><th>训练数据</th><th style="text-align:right">mAP<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow></mrow><mrow><mn>50</mn><mo>:</mo><mn>95</mn></mrow></msub></mrow><annotation encoding="application/x-tex">_{50:95}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4511em;vertical-align:-0.15em"></span><span class="mord"><span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em"><span style="top:-2.55em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">50</span><span class="mrel mtight">:</span><span class="mord mtight">95</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em"><span></span></span></span></span></span></span></span></span></span></th><th style="text-align:right">mAP<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow></mrow><mn>50</mn></msub></mrow><annotation encoding="application/x-tex">_{50}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4511em;vertical-align:-0.15em"></span><span class="mord"><span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em"><span style="top:-2.55em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">50</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em"><span></span></span></span></span></span></span></span></span></span></th><th style="text-align:right">Precision</th><th style="text-align:right">Recall</th></tr></thead><tbody><tr><td>Scratch</td><td>DAWN</td><td>Cityscapes-Clear</td><td style="text-align:right">0.1138</td><td style="text-align:right">0.2004</td><td style="text-align:right">0.4648</td><td style="text-align:right">0.1745</td></tr><tr><td>Scratch</td><td>DAWN</td><td>ICEdit</td><td style="text-align:right">0.2623</td><td style="text-align:right">0.4338</td><td style="text-align:right">0.6924</td><td style="text-align:right">0.3793</td></tr><tr><td>Scratch</td><td>DAWN</td><td>FLUX.1 Kontext</td><td style="text-align:right">0.3013</td><td style="text-align:right">0.4809</td><td style="text-align:right">0.7188</td><td style="text-align:right">0.4185</td></tr><tr><td>Scratch</td><td>DAWN</td><td><strong>PC-Weather</strong></td><td style="text-align:right"><strong>0.3083</strong></td><td style="text-align:right"><strong>0.4950</strong></td><td style="text-align:right"><strong>0.7196</strong></td><td style="text-align:right"><strong>0.4273</strong></td></tr><tr><td>Scratch</td><td>ACDC</td><td>Cityscapes-Clear</td><td style="text-align:right">0.1113</td><td style="text-align:right">0.2050</td><td style="text-align:right">0.3789</td><td style="text-align:right">0.3030</td></tr><tr><td>Scratch</td><td>ACDC</td><td>ICEdit</td><td style="text-align:right">0.1361</td><td style="text-align:right">0.2506</td><td style="text-align:right">0.4221</td><td style="text-align:right">0.3528</td></tr><tr><td>Scratch</td><td>ACDC</td><td>FLUX.1 Kontext</td><td style="text-align:right">0.1667</td><td style="text-align:right">0.2816</td><td style="text-align:right"><strong>0.4441</strong></td><td style="text-align:right">0.3793</td></tr><tr><td>Scratch</td><td>ACDC</td><td><strong>PC-Weather</strong></td><td style="text-align:right"><strong>0.1670</strong></td><td style="text-align:right"><strong>0.2858</strong></td><td style="text-align:right">0.4407</td><td style="text-align:right"><strong>0.3888</strong></td></tr><tr><td>Fine-tuning</td><td>DAWN</td><td>Cityscapes-Clear</td><td style="text-align:right">0.2072</td><td style="text-align:right">0.3326</td><td style="text-align:right">0.6294</td><td style="text-align:right">0.2639</td></tr><tr><td>Fine-tuning</td><td>DAWN</td><td>ICEdit</td><td style="text-align:right">0.3048</td><td style="text-align:right">0.4943</td><td style="text-align:right">0.7343</td><td style="text-align:right">0.4425</td></tr><tr><td>Fine-tuning</td><td>DAWN</td><td>FLUX.1 Kontext</td><td style="text-align:right">0.3778</td><td style="text-align:right">0.6007</td><td style="text-align:right">0.7562</td><td style="text-align:right">0.5370</td></tr><tr><td>Fine-tuning</td><td>DAWN</td><td><strong>PC-Weather</strong></td><td style="text-align:right"><strong>0.3826</strong></td><td style="text-align:right"><strong>0.6124</strong></td><td style="text-align:right"><strong>0.7657</strong></td><td style="text-align:right"><strong>0.5430</strong></td></tr><tr><td>Fine-tuning</td><td>ACDC</td><td>Cityscapes-Clear</td><td style="text-align:right">0.1728</td><td style="text-align:right">0.2912</td><td style="text-align:right">0.4430</td><td style="text-align:right">0.4115</td></tr><tr><td>Fine-tuning</td><td>ACDC</td><td>ICEdit</td><td style="text-align:right">0.1627</td><td style="text-align:right">0.2840</td><td style="text-align:right">0.4491</td><td style="text-align:right">0.3929</td></tr><tr><td>Fine-tuning</td><td>ACDC</td><td>FLUX.1 Kontext</td><td style="text-align:right">0.2105</td><td style="text-align:right">0.3373</td><td style="text-align:right">0.4794</td><td style="text-align:right">0.4582</td></tr><tr><td>Fine-tuning</td><td>ACDC</td><td><strong>PC-Weather</strong></td><td style="text-align:right"><strong>0.2190</strong></td><td style="text-align:right"><strong>0.3481</strong></td><td style="text-align:right"><strong>0.4877</strong></td><td style="text-align:right"><strong>0.4672</strong></td></tr></tbody></table></div>
+<figure class="markdown-figure"><img src="../../projects/pc-weather/image-5.png" alt="不同检测器上的真实恶劣天气 mAP50"/><figcaption>不同检测器上的真实恶劣天气 mAP50</figcaption></figure>
+<ul>
+<li><strong>从头训练：</strong> PC-Weather 在 DAWN 达到 0.3083 mAP<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow></mrow><mrow><mn>50</mn><mo>:</mo><mn>95</mn></mrow></msub></mrow><annotation encoding="application/x-tex">_{50:95}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4511em;vertical-align:-0.15em"></span><span class="mord"><span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em"><span style="top:-2.55em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">50</span><span class="mrel mtight">:</span><span class="mord mtight">95</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em"><span></span></span></span></span></span></span></span></span></span> / 0.4950 mAP<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow></mrow><mn>50</mn></msub></mrow><annotation encoding="application/x-tex">_{50}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4511em;vertical-align:-0.15em"></span><span class="mord"><span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em"><span style="top:-2.55em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">50</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em"><span></span></span></span></span></span></span></span></span></span>，在 ACDC 达到 0.1670 / 0.2858，两个测试集的平均 AP 均最高。</li>
+<li><strong>预训练微调：</strong> PC-Weather 在 DAWN 达到 0.3826 / 0.6124，在 ACDC 达到 0.2190 / 0.3481，并在两个数据集的 Precision、Recall 和 AP 上取得最优平均结果。</li>
+<li><strong>跨配置稳定性：</strong> 24 个“检测器—数据集”配置中，PC-Weather 在 18 个配置上取得最高 mAP<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow></mrow><mn>50</mn></msub></mrow><annotation encoding="application/x-tex">_{50}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4511em;vertical-align:-0.15em"></span><span class="mord"><span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em"><span style="top:-2.55em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">50</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em"><span></span></span></span></span></span></span></span></span></span>。全部配置平均达到 0.2692 mAP<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow></mrow><mrow><mn>50</mn><mo>:</mo><mn>95</mn></mrow></msub></mrow><annotation encoding="application/x-tex">_{50:95}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4511em;vertical-align:-0.15em"></span><span class="mord"><span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em"><span style="top:-2.55em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">50</span><span class="mrel mtight">:</span><span class="mord mtight">95</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em"><span></span></span></span></span></span></span></span></span></span> 和 0.4354 mAP<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow></mrow><mn>50</mn></msub></mrow><annotation encoding="application/x-tex">_{50}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4511em;vertical-align:-0.15em"></span><span class="mord"><span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em"><span style="top:-2.55em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">50</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em"><span></span></span></span></span></span></span></span></span></span>，相对 FLUX.1 Kontext 分别提升 1.96% 和 2.40%。</li>
+</ul>
+<p>这说明 PC-Weather 不只是让图像看起来更像恶劣天气，还保留了能够迁移到真实恶劣天气检测的标签相关结构。</p>
+<h2 id="局限">局限</h2>
+<ul>
+<li>反照率锚定和区域指令只能鼓励物理合理性，尚未显式约束三维几何与大气传播，因此不能严格保证浓雾等深度相关效果。</li>
+<li>当前验证集中在单张交通图像与车辆检测，尚未验证视频时序一致性、更多下游任务或更广泛场景。</li>
+</ul>
+<h2 id="项目贡献总结">项目贡献总结</h2>
+<ul>
+<li>将街景天气编辑定义为区域相关的保留—重建平衡问题。</li>
+<li>提出反照率驱动的 Intrinsic Anchoring，减少源天气照明对材质保留的干扰。</li>
+<li>提出 Region-Aware Velocity Composition，在统一全局轨迹上组合语义区域的天气速度残差。</li>
+<li>通过自动指标、用户研究和真实恶劣天气车辆检测，验证编辑质量与合成数据实用性。</li>
+</ul>
+<h2 id="完整论文">完整论文</h2>
+<p><strong>PC-Weather: Preserve-and-Compose Weather Editing via Intrinsic Anchoring and Region-Aware Velocity Composition</strong></p>
+<p><strong>Chi Zhang, Zhiwen Hu, Meng Yuan, Yuchen Li</strong></p>
+<div class="paper-actions">
+  <a href="../../papers/pc-weather.pdf" target="_blank" rel="noreferrer">Open full PDF</a>
+  <a href="../../papers/pc-weather.pdf" download="PC-Weather_TMM_main.pdf">Download PDF</a>
+</div>
+<p>为避免部分浏览器无法加载内嵌 PDF，下面同时提供完整 10 页的逐页阅读版本。原始 PDF 仍可通过上方按钮打开或下载。</p>
+<figure class="markdown-figure"><img src="../../projects/pc-weather/paper-pages/page-01.jpg" alt="PC-Weather 论文第 1 页"/><figcaption>PC-Weather 论文第 1 页</figcaption></figure>
+<figure class="markdown-figure"><img src="../../projects/pc-weather/paper-pages/page-02.jpg" alt="PC-Weather 论文第 2 页"/><figcaption>PC-Weather 论文第 2 页</figcaption></figure>
+<figure class="markdown-figure"><img src="../../projects/pc-weather/paper-pages/page-03.jpg" alt="PC-Weather 论文第 3 页"/><figcaption>PC-Weather 论文第 3 页</figcaption></figure>
+<figure class="markdown-figure"><img src="../../projects/pc-weather/paper-pages/page-04.jpg" alt="PC-Weather 论文第 4 页"/><figcaption>PC-Weather 论文第 4 页</figcaption></figure>
+<figure class="markdown-figure"><img src="../../projects/pc-weather/paper-pages/page-05.jpg" alt="PC-Weather 论文第 5 页"/><figcaption>PC-Weather 论文第 5 页</figcaption></figure>
+<figure class="markdown-figure"><img src="../../projects/pc-weather/paper-pages/page-06.jpg" alt="PC-Weather 论文第 6 页"/><figcaption>PC-Weather 论文第 6 页</figcaption></figure>
+<figure class="markdown-figure"><img src="../../projects/pc-weather/paper-pages/page-07.jpg" alt="PC-Weather 论文第 7 页"/><figcaption>PC-Weather 论文第 7 页</figcaption></figure>
+<figure class="markdown-figure"><img src="../../projects/pc-weather/paper-pages/page-08.jpg" alt="PC-Weather 论文第 8 页"/><figcaption>PC-Weather 论文第 8 页</figcaption></figure>
+<figure class="markdown-figure"><img src="../../projects/pc-weather/paper-pages/page-09.jpg" alt="PC-Weather 论文第 9 页"/><figcaption>PC-Weather 论文第 9 页</figcaption></figure>
+<figure class="markdown-figure"><img src="../../projects/pc-weather/paper-pages/page-10.jpg" alt="PC-Weather 论文第 10 页"/><figcaption>PC-Weather 论文第 10 页</figcaption></figure></article><aside class="project-toc" aria-label="文章目录"><p>Contents</p><nav><a href="#背景" class="toc-level-2 is-active" aria-current="location">背景</a><a href="#问题" class="toc-level-2 ">问题</a><a href="#insight" class="toc-level-2 ">Insight</a><a href="#方法" class="toc-level-2 ">方法</a><a href="#1-intrinsic-anchoring-全局内在属性锚定" class="toc-level-3 ">1. Intrinsic Anchoring：全局内在属性锚定</a><a href="#2-regional-instruction-refinement-区域指令细化" class="toc-level-3 ">2. Regional Instruction Refinement：区域指令细化</a><a href="#3-region-aware-velocity-composition-区域感知速度组合" class="toc-level-3 ">3. Region-Aware Velocity Composition：区域感知速度组合</a><a href="#实验" class="toc-level-2 ">实验</a><a href="#1-实验设置与评价口径" class="toc-level-3 ">1. 实验设置与评价口径</a><a href="#2-与主流编辑方法的比较" class="toc-level-3 ">2. 与主流编辑方法的比较</a><a href="#3-用户研究" class="toc-level-3 ">3. 用户研究</a><a href="#4-组件消融-ia-与-rvc" class="toc-level-3 ">4. 组件消融：IA 与 RVC</a><a href="#5-合成数据对真实恶劣天气检测的作用" class="toc-level-3 ">5. 合成数据对真实恶劣天气检测的作用</a><a href="#局限" class="toc-level-2 ">局限</a><a href="#项目贡献总结" class="toc-level-2 ">项目贡献总结</a><a href="#完整论文" class="toc-level-2 ">完整论文</a></nav></aside></div></main></body></html>

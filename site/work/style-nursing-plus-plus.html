@@ -1,0 +1,406 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="image" href="../projects/style-nursing-plus-plus/fig09_lsk_spatial_response.png"/><link rel="preload" as="image" href="../projects/style-nursing-plus-plus/fig10_lsk_attention_agreement.png"/><link rel="preload" as="image" href="../projects/style-nursing-plus-plus/fig07_qualitative_comparison.png"/><link rel="preload" as="image" href="../projects/style-nursing-plus-plus/fig08_component_ablation.png"/><link rel="preload" as="image" href="../projects/style-nursing-plus-plus/fig11_cross_domain_generalization.png"/><link rel="preload" as="image" href="../projects/style-nursing-plus-plus/paper-pages/page-01.jpg"/><link rel="preload" as="image" href="../projects/style-nursing-plus-plus/paper-pages/page-02.jpg"/><link rel="preload" as="image" href="../projects/style-nursing-plus-plus/paper-pages/page-03.jpg"/><link rel="preload" as="image" href="../projects/style-nursing-plus-plus/paper-pages/page-04.jpg"/><link rel="preload" as="image" href="../projects/style-nursing-plus-plus/paper-pages/page-05.jpg"/><link rel="stylesheet" href="../_next/static/css/index.BlEUNAtn.css" data-rsc-css-href="../_next/static/css/index.BlEUNAtn.css" data-precedence="vite-rsc/importer-resources"/><link rel="preload" as="image" href="../projects/style-nursing-plus-plus/paper-pages/page-06.jpg"/><link rel="preload" as="image" href="../projects/style-nursing-plus-plus/paper-pages/page-07.jpg"/><link rel="preload" as="image" href="../projects/style-nursing-plus-plus/paper-pages/page-08.jpg"/><link rel="preload" as="image" href="../projects/style-nursing-plus-plus/paper-pages/page-09.jpg"/><link rel="preload" as="image" href="../projects/style-nursing-plus-plus/paper-pages/page-10.jpg"/><link rel="preload" as="image" href="../projects/style-nursing-plus-plus/paper-pages/page-11.jpg"/><link rel="preload" as="image" href="../projects/style-nursing-plus-plus/paper-pages/page-12.jpg"/><title>Style Nursing++｜李昱辰</title><meta name="description" content="面向交通场景的零样本复合天气迁移：以自适应风格调控与可学习结构核兼顾天气外观变化和场景结构稳定性。"/><meta property="og:title" content="李昱辰｜生成式模型研究"/><meta property="og:description" content="Diffusion · Flow Matching · Controllable Generation"/><meta property="og:type" content="website"/><meta property="og:image" content="https://maxxxxxli.github.io/li-yuchen-portfolio/og.png"/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta property="og:image:alt" content="Li Yuchen Generative AI Research"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="李昱辰｜生成式模型研究"/><meta name="twitter:description" content="Diffusion · Flow Matching · Controllable Generation"/><meta name="twitter:image" content="https://maxxxxxli.github.io/li-yuchen-portfolio/og.png"/>
+<link rel="preload" href="../_next/static/_vinext_fonts/geist-8ac0455e797f/geist-98bbbccb.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="../_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2" as="font" type="font/woff2" crossorigin />
+<style data-vinext-fonts>/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(../_next/static/_vinext_fonts/geist-8ac0455e797f/geist-ff2310f5.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(../_next/static/_vinext_fonts/geist-8ac0455e797f/geist-875ccdd4.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(../_next/static/_vinext_fonts/geist-8ac0455e797f/geist-52306abf.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(../_next/static/_vinext_fonts/geist-8ac0455e797f/geist-001175b1.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(../_next/static/_vinext_fonts/geist-8ac0455e797f/geist-98bbbccb.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Geist Fallback';
+  src: local("Arial");
+  ascent-override: 95.94%;
+  descent-override: 28.16%;
+  line-gap-override: 0.00%;
+  size-adjust: 104.76%;
+}
+
+.__font_geist_19ysh9d { font-family: 'Geist', 'Geist Fallback'; font-style: normal; }
+
+.__variable_geist_19ysh9d { --font-geist-sans: 'Geist', 'Geist Fallback'; }
+
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(../_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-f6b33328.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(../_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-44e03052.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* symbols2 */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(../_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-0638449e.woff2) format('woff2');
+  unicode-range: U+2000-2001, U+2004-2008, U+200A, U+23B8-23BD, U+2500-259F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(../_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-971fb274.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(../_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-44745446.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(../_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Geist Mono Fallback';
+  src: local("Arial");
+  ascent-override: 74.67%;
+  descent-override: 21.92%;
+  line-gap-override: 0.00%;
+  size-adjust: 134.59%;
+}
+
+.__font_geist_mono_1001rt9 { font-family: 'Geist Mono', 'Geist Mono Fallback'; font-style: normal; }
+
+.__variable_geist_mono_1001rt9 { --font-geist-mono: 'Geist Mono', 'Geist Mono Fallback'; }
+</style>
+</head><body class="__variable_geist_19ysh9d __variable_geist_mono_1001rt9"><main class="markdown-page"><header class="project-topbar"><a href="../index.html#work">← Back</a><span>计划投稿 TPAMI · 学生一作</span><a href="#top">Top ↑</a></header><div class="project-shell" id="top"><article class="markdown-article"><h1>Style Nursing++</h1>
+<h2 id="背景">背景</h2>
+<ul>
+<li><strong>任务背景：</strong> 零样本复合天气迁移需要在一张真实交通图像中同时表达多个提示概念，例如“雪 + 日落”“雨 + 彩虹”或“雾 + 闪电”。这些概念的作用范围并不相同：雪可能覆盖整幅图，日落主要改变天空和照明，积水与反射则应出现在道路区域。</li>
+<li><strong>核心要求：</strong> 编辑结果既要完整响应提示词，又要保持源图的道路几何、车辆身份、建筑布局和场景语义。只强化风格会破坏结构，只加强源图约束又容易让部分概念消失。</li>
+<li><strong>方法定位：</strong> Style Nursing++ 是一个零样本扩散编辑框架。它用自适应概念强化解决提示词表达不足，用分层空间与语义引导保护结构，并以 Learned Structural Kernel（LSK）替代昂贵的语义参考分支，在保持编辑质量的同时降低推理成本。</li>
+</ul>
+<h2 id="问题-style-neglection-与-style-over-expression">问题：Style Neglection 与 Style Over-expression</h2>
+<p>复合提示中的不同概念具有不同的空间支持和出现时机。标准文本引导编辑器通常出现两类相互耦合的失败：</p>
+<ul>
+<li><strong>Style Neglection（风格忽略）：</strong> 一个或多个概念没有得到充分表达。例如模型生成了雪，却几乎没有呈现日落；整体结构接近源图，但提示词完成度不足。</li>
+<li><strong>Style Over-expression（风格过表达）：</strong> 提高文本或风格引导后，天气外观变强，却同时改写车辆、道路、建筑或前景物体，造成结构漂移和语义错误。</li>
+<li><strong>空间错配：</strong> 把所有概念都在整幅图上统一加强，会让天空现象泄漏到道路和车辆，也会让路面效果污染背景。</li>
+</ul>
+<figure class="markdown-figure"><img src="../projects/style-nursing-plus-plus/fig01_style_failure_modes.png" alt="Style Nursing++ 所针对的风格忽略与结构过编辑"/><figcaption>Style Nursing++ 所针对的风格忽略与结构过编辑</figcaption></figure>
+<p>Style Nursing++ 将问题转化为两个互补目标：对尚未满足的概念进行按需、分区强化；对源图结构进行分层、选择性保护。</p>
+<h2 id="insight">Insight</h2>
+<ol>
+<li><strong>风格概念需要被独立、充分地表达。</strong> Cross-attention 反映文本风格概念与图像区域之间的对应关系。通过监测每个风格概念的 cross-attention 响应，并仅强化表达不足的概念，可以避免复合风格中的 Style Neglection，同时减少已经充分表达的概念被过度增强。</li>
+<li><strong>结构信息分布在网络的不同层级，需要进行分层保护。</strong> 扩散模型不同层承载不同尺度的结构信息：中间层主要描述场景布局和局部几何，自注意力进一步表示物体内部及物体之间的语义关系。因此，结构保护不应统一作用于所有层，而应在合适层级分别约束空间结构和语义关系。</li>
+<li><strong>Self-attention 中需要的结构模式可以由可学习的核函数近似。</strong> Self-attention 本质上是在 token 之间学习一种数据相关的聚合模式。通过 KDE/Gaussian kernel 学习这种空间响应 pattern，可以近似目标 attention 的结构聚合，并用更轻量的 Learned Structural Kernel 替代额外的语义参考分支。</li>
+</ol>
+<h2 id="方法">方法</h2>
+<figure class="markdown-figure"><img src="../projects/style-nursing-plus-plus/fig02_method_overview.png" alt="Style Nursing++ 总体框架"/><figcaption>Style Nursing++ 总体框架</figcaption></figure>
+<p>整体流程以 DDIM inversion 获得与源图时间步对齐的潜变量和特征。编辑 U-Net 沿目标提示去噪，并在早期阶段加入概念与结构校正。完整系统包含 Adaptive Style Nursing、Layer-Selective Spatial Guidance、Entropy-Selective Semantic Guidance 和 Learned Structural Kernel。</p>
+<h3 id="1-adaptive-style-nursing-按缺口自适应强化概念">1. Adaptive Style Nursing：按缺口自适应强化概念</h3>
+<p>首先把提示词解析为多个风格概念，并按语义角色路由到三类支持区域：</p>
+<ul>
+<li>全局天气使用整幅图；</li>
+<li>天空现象和照明变化使用天空区域；</li>
+<li>路面效果使用道路区域。</li>
+</ul>
+<p>天空与道路掩码由冻结的分割模型提供，并缩放到 latent 分辨率。对于每个概念 (c)，方法从选定交叉注意力层和注意力头中汇聚其 token 响应，得到区域证据 (a_c)。分布式概念使用区域均值和覆盖率衡量完成度，闪电等局部概念则使用高分位与峰值响应。</p>
+<p>当前证据与概念目标之间形成 deficit (e_c)。只有尚未满足目标的概念才会获得额外更新，步长随 deficit 增大并在高值处饱和；更新被掩码限制在兼容区域内，并设置单步上限与累计预算。每次校正后重新测量注意力，一旦目标达到便停止强化。</p>
+<figure class="markdown-figure"><img src="../projects/style-nursing-plus-plus/fig06_adaptive_style_nursing_schedule.png" alt="雨与闪电在去噪过程中的独立目标调度和注意力演化"/><figcaption>雨与闪电在去噪过程中的独立目标调度和注意力演化</figcaption></figure>
+<p>图中“雨 + 闪电”示例体现了不同调度：分布式的雨在早期获得更强目标，局部闪电则在后期逐渐增强。该设计让多个概念按自身状态出现，而不是被同一个全局强度同时推动。</p>
+<h3 id="2-lssg-分层空间结构保护">2. LSSG：分层空间结构保护</h3>
+<p>Layer-Selective Spatial Guidance（LSSG）比较当前编辑轨迹与时间步对齐的源图轨迹。两条分支都使用仅含内容的条件，因此差异主要反映结构变化，而不是风格 token 的直接激活。</p>
+<p>方法只选择 Encoder 16×16、Middle 8×8 和 Decoder 16×16 等中间阶段，联合约束：</p>
+<ul>
+<li>对应位置的特征方向；</li>
+<li>邻域相似关系；</li>
+<li>低频粗布局。</li>
+</ul>
+<p>空间引导在早期最强，随后逐步释放，让天气纹理、光照和高分辨率细节能够自然形成。</p>
+<figure class="markdown-figure"><img src="../projects/style-nursing-plus-plus/fig03_guidance_layer_analysis.png" alt="不同扩散层中的空间与语义结构表征"/><figcaption>不同扩散层中的空间与语义结构表征</figcaption></figure>
+<figure class="markdown-figure"><img src="../projects/style-nursing-plus-plus/fig04_guidance_timestep_analysis.png" alt="结构表征随去噪时间步的演化"/><figcaption>结构表征随去噪时间步的演化</figcaption></figure>
+<h3 id="3-essg-选择低熵注意力头保持语义关系">3. ESSG：选择低熵注意力头保持语义关系</h3>
+<p>Entropy-Selective Semantic Guidance（ESSG）从源图构造分段常数的语义参考图，并对其独立反演。参考轨迹提供自注意力关系 (A_{ref})，但这些注意力并不是类别分割，而是位置依赖的物体内部与物体间关系。</p>
+<p>方法计算每个参考注意力头的归一化熵，只保留响应更集中、信息量更高的低熵头，再用 Jensen-Shannon divergence 对齐当前轨迹和参考轨迹的关系分布。空间损失与语义损失的梯度分别按运行幅值归一化并限幅，避免任一约束因数值尺度过大而主导更新。</p>
+<figure class="markdown-figure"><img src="../projects/style-nursing-plus-plus/fig05_bus_structure_diagnostics.png" alt="车辆区域的结构诊断：PnP 丢失公交车，而 Style Nursing++ 保留其位置与内部响应"/><figcaption>车辆区域的结构诊断：PnP 丢失公交车，而 Style Nursing++ 保留其位置与内部响应</figcaption></figure>
+<h3 id="4-learned-structural-kernel-学习结构聚合并替代参考分支">4. Learned Structural Kernel：学习结构聚合并替代参考分支</h3>
+<p>显式 ESSG 在推理时需要额外的语义参考轨迹。LSK 将语义引导和源图锚定后得到的结构注意力作为离线训练目标，把注意力解释为归一化的高斯核回归：</p>
+<ul>
+<li>输入包括源图隐藏 token、空间坐标和扩散时间步；</li>
+<li>每个注意力头学习 query/key 映射、核带宽和位置权重；</li>
+<li>核权重与当前编辑轨迹的 value 特征相乘，复现原结构注意力的聚合结果；</li>
+<li>训练同时最小化相对重建误差和方向余弦误差。</li>
+</ul>
+<p>在线推理时 LSK 参数冻结。源状态决定结构权重，当前 value 继续携带正在演化的天气外观，因此结构被保留而风格仍可变化。Adaptive Style Nursing 和 LSSG 保持不变，LSK 只替代显式 ESSG 的辅助语义轨迹。</p>
+<figure class="markdown-figure"><img src="../projects/style-nursing-plus-plus/fig09_lsk_spatial_response.png" alt="原生 Transformer 自注意力与 LSK 的空间响应一致性"/><figcaption>原生 Transformer 自注意力与 LSK 的空间响应一致性</figcaption></figure>
+<figure class="markdown-figure"><img src="../projects/style-nursing-plus-plus/fig10_lsk_attention_agreement.png" alt="代表性解码层中 LSK 对注意力权重与聚合输出的近似"/><figcaption>代表性解码层中 LSK 对注意力权重与聚合输出的近似</figcaption></figure>
+<h2 id="实验">实验</h2>
+<h3 id="1-实验设置">1. 实验设置</h3>
+<ul>
+<li><strong>主数据集：</strong> STREET-6K，覆盖复合与单一天气提示。</li>
+<li><strong>比较方法：</strong> SDEdit、P2P + NTI、PnP、Pix2Pix-Zero、MasaCtrl、DiffuseIT、LEDITS++、Free-Prompt-Editing 和原始 Style Nursing。</li>
+<li><strong>结构与重建指标：</strong> DINO、SAM、PSNR、LPIPS、MSE、SSIM。</li>
+<li><strong>提示与编辑指标：</strong> CLIP-I、CLIP-TI、CLIP-Dir，以及 EditScore 的 SC 和 Overall。</li>
+<li><strong>两种配置：</strong> guidance-only core 使用 Adaptive Style Nursing、LSSG 和显式 ESSG；full model 以 LSK 替代显式 ESSG。</li>
+<li><strong>效率协议：</strong> 在 NVIDIA RTX PRO 6000 Blackwell Server Edition 上，以 100 张 512×512 STREET-6K 图像和 50 个扩散步测试；计时包含源图反演、显式配置中的语义参考反演、引导、去噪和图像保存。</li>
+</ul>
+<h3 id="2-复合与单一天气定性比较">2. 复合与单一天气定性比较</h3>
+<figure class="markdown-figure"><img src="../projects/style-nursing-plus-plus/fig07_qualitative_comparison.png" alt="复合天气和单一天气迁移的定性比较"/><figcaption>复合天气和单一天气迁移的定性比较</figcaption></figure>
+<p>比较覆盖“雨 + 彩虹”“雾 + 闪电”“雾 + 金色光照”三个复合提示，以及雾、雨、雪三个单一天气提示。接近源图的方法往往遗漏某个概念；外观变化更强的方法则容易改变车辆、建筑或道路。Style Nursing++ 在这些示例中同时呈现目标天气并保留主要布局与物体。</p>
+<h3 id="3-street-6k-主定量结果">3. STREET-6K 主定量结果</h3>
+<p><strong>表 1：主要方法的代表性指标</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-scroll"><table><thead><tr><th>方法</th><th style="text-align:right">DINO ↑</th><th style="text-align:right">SAM ↑</th><th style="text-align:right">PSNR ↑</th><th style="text-align:right">LPIPS ↓</th><th style="text-align:right">CLIP-Dir ↑</th><th style="text-align:right">EditScore SC ↑</th><th style="text-align:right">Overall ↑</th></tr></thead><tbody><tr><td>SDEdit</td><td style="text-align:right">0.6436</td><td style="text-align:right">0.6752</td><td style="text-align:right">19.79</td><td style="text-align:right">0.2958</td><td style="text-align:right">0.1285</td><td style="text-align:right">5.882</td><td style="text-align:right">6.189</td></tr><tr><td>P2P + NTI</td><td style="text-align:right">0.7573</td><td style="text-align:right">0.7964</td><td style="text-align:right">19.74</td><td style="text-align:right">0.2515</td><td style="text-align:right">0.1906</td><td style="text-align:right">6.706</td><td style="text-align:right">6.796</td></tr><tr><td>PnP</td><td style="text-align:right">0.7150</td><td style="text-align:right">0.7681</td><td style="text-align:right">18.18</td><td style="text-align:right">0.3081</td><td style="text-align:right">0.1971</td><td style="text-align:right">7.392</td><td style="text-align:right"><strong>7.730</strong></td></tr><tr><td>Pix2Pix-Zero</td><td style="text-align:right">0.7434</td><td style="text-align:right">0.7878</td><td style="text-align:right">19.78</td><td style="text-align:right">0.2642</td><td style="text-align:right">0.1476</td><td style="text-align:right">5.912</td><td style="text-align:right">5.754</td></tr><tr><td>DiffuseIT</td><td style="text-align:right">0.5663</td><td style="text-align:right">0.5929</td><td style="text-align:right">13.80</td><td style="text-align:right">0.4854</td><td style="text-align:right">0.1714</td><td style="text-align:right">5.064</td><td style="text-align:right">4.308</td></tr><tr><td>LEDITS++</td><td style="text-align:right">0.7420</td><td style="text-align:right">0.7611</td><td style="text-align:right">19.64</td><td style="text-align:right"><strong>0.2377</strong></td><td style="text-align:right">0.2002</td><td style="text-align:right">6.956</td><td style="text-align:right">6.972</td></tr><tr><td>Free-Prompt-Editing</td><td style="text-align:right">0.6871</td><td style="text-align:right">0.7257</td><td style="text-align:right">11.36</td><td style="text-align:right">0.3902</td><td style="text-align:right">0.1870</td><td style="text-align:right">6.302</td><td style="text-align:right">7.166</td></tr><tr><td>Style Nursing</td><td style="text-align:right"><strong>0.7770</strong></td><td style="text-align:right"><strong>0.8091</strong></td><td style="text-align:right">19.49</td><td style="text-align:right">0.2389</td><td style="text-align:right">0.1967</td><td style="text-align:right">7.510</td><td style="text-align:right">7.144</td></tr><tr><td>Style Nursing++ core</td><td style="text-align:right">0.7580</td><td style="text-align:right">0.8023</td><td style="text-align:right">20.04</td><td style="text-align:right">0.2407</td><td style="text-align:right">0.1965</td><td style="text-align:right">7.878</td><td style="text-align:right">7.368</td></tr><tr><td><strong>Style Nursing++ full</strong></td><td style="text-align:right">0.7600</td><td style="text-align:right">0.8057</td><td style="text-align:right"><strong>20.16</strong></td><td style="text-align:right">0.2381</td><td style="text-align:right"><strong>0.2005</strong></td><td style="text-align:right"><strong>7.904</strong></td><td style="text-align:right">7.396</td></tr></tbody></table></div>
+<p>没有单一方法在所有目标上占优。原始 Style Nursing 的 DINO、SAM 和 SSIM 最高，LEDITS++ 的 LPIPS 最低，PnP 的 EditScore Overall 最高；Style Nursing++ full 则取得最佳 PSNR、MSE、CLIP-Dir 和 EditScore SC，并在 DINO、SAM、LPIPS 与 Overall 上保持竞争力。这反映出论文关注的是提示完成度与结构保持的综合平衡，而不是单一指标最大化。</p>
+<h3 id="4-组件消融">4. 组件消融</h3>
+<figure class="markdown-figure"><img src="../projects/style-nursing-plus-plus/fig08_component_ablation.png" alt="Adaptive Style Nursing、LSSG 与 ESSG 的定性组件分析"/><figcaption>Adaptive Style Nursing、LSSG 与 ESSG 的定性组件分析</figcaption></figure>
+<ul>
+<li>移除 <strong>Adaptive Style Nursing</strong> 后，系统更接近源图重建，DINO、SAM、PSNR 和 SSIM 上升，但 CLIP-TI、CLIP-Dir 和两项 EditScore 显著下降，说明复合提示表达变弱。</li>
+<li>移除 <strong>LSSG</strong> 后，结构与重建指标整体下降，表明中间层空间锚定对道路、车辆和布局稳定至关重要。</li>
+<li>移除 <strong>ESSG</strong> 后，SAM、LPIPS、CLIP-I、CLIP-Dir 和两项 EditScore 变差，说明低熵关系头为物体内部和物体间结构提供了额外约束。</li>
+<li>用 <strong>LSK</strong> 替代显式 ESSG 后，11 项报告指标全部优于 guidance-only core：DINO/SAM 从 0.7580/0.8023 提升到 0.7600/0.8057，PSNR 从 20.04 dB 提升到 20.16 dB，LPIPS 从 0.2407 降至 0.2381，MSE 从 111.52 降至 108.81。</li>
+</ul>
+<h3 id="5-lsk-拟合与注意力一致性">5. LSK 拟合与注意力一致性</h3>
+<p>在近似参数规模和相同训练设置下，高斯 LSK 在六项拟合指标上优于 MLP dot-product 与 convolutional dot-product：相对 MSE 分别降低 20.5% 和 51.3%。高斯核与拉普拉斯核的差异只有约 1.4%，因此论文只把结果解释为“学习核结构有效”，而不宣称高斯族绝对优于所有其他核。</p>
+<p>在三个示例的全部 query 位置上，LSK 与原生自注意力的平均注意力余弦相似度为 0.9295–0.9787；使用相同 value 矩阵时，聚合输出余弦相似度达到 0.9737–0.9932。代表性解码层的平均头注意力余弦相似度为 0.9619，聚合输出余弦相似度为 0.9880，相对 MSE 为 0.0189。</p>
+<h3 id="6-推理效率">6. 推理效率</h3>
+<p><strong>表 2：STREET-6K 单图效率</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-scroll"><table><thead><tr><th>配置</th><th style="text-align:right">平均延迟</th><th style="text-align:right">计算量</th><th style="text-align:right">能耗</th><th style="text-align:right">P50 延迟</th><th style="text-align:right">P95 延迟</th></tr></thead><tbody><tr><td>Style Nursing++ core（显式 ESSG）</td><td style="text-align:right">27.61 s</td><td style="text-align:right">183.75 TFLOP</td><td style="text-align:right">1.92 Wh</td><td style="text-align:right">27.55 s</td><td style="text-align:right">28.97 s</td></tr><tr><td><strong>Style Nursing++ full（LSK）</strong></td><td style="text-align:right"><strong>19.65 s</strong></td><td style="text-align:right"><strong>145.37 TFLOP</strong></td><td style="text-align:right"><strong>1.49 Wh</strong></td><td style="text-align:right"><strong>19.53 s</strong></td><td style="text-align:right"><strong>21.14 s</strong></td></tr></tbody></table></div>
+<p>相对于显式 ESSG，LSK 将平均延迟降低 28.8%，计算量降低 20.9%，能耗降低 22.4%。它既取消了额外语义参考分支，也在全部 11 项主指标上优于 core 配置。</p>
+<h3 id="7-跨域迁移">7. 跨域迁移</h3>
+<figure class="markdown-figure"><img src="../projects/style-nursing-plus-plus/fig11_cross_domain_generalization.png" alt="使用交通场景训练的 LSK 在非交通对象上的跨域编辑"/><figcaption>使用交通场景训练的 LSK 在非交通对象上的跨域编辑</figcaption></figure>
+<p>论文还把交通场景上训练的 LSK 用于人物、折纸、木雕和刺绣材质编辑。结果保留了主要姿态、轮廓与空间排列，说明学习到的结构聚合具有一定跨域迁移能力；但该部分只有定性示例，尚不能替代更广泛的定量泛化评估。</p>
+<h2 id="局限">局限</h2>
+<ul>
+<li>当前区域路由只覆盖交通场景中较可靠的整图、天空和道路支持区域。更局部的概念仍需要额外掩码或学习式路由器。</li>
+<li>LSK 针对特定扩散骨干、选定层和去噪阶段拟合。更换差异较大的骨干时，需要重新采集结构轨迹并训练核模型。</li>
+<li>效率实验只覆盖一种 GPU 和 512×512 分辨率，尚需在更多硬件、分辨率和骨干上验证可移植性。</li>
+<li>跨域实验目前仅为定性观察，不能据此声称在所有对象与风格上普遍泛化。</li>
+<li>方法仍依赖冻结分割模型提供天空与道路区域；分割错误可能导致概念强化区域不准确。</li>
+</ul>
+<h2 id="项目贡献总结">项目贡献总结</h2>
+<ol>
+<li><strong>把复合天气编辑建模为概念实现与结构保护的联合问题。</strong> Style Nursing++ 明确区分 Style Neglection 和 Style Over-expression，并通过独立概念反馈避免用单一全局强度处理所有天气效果。</li>
+<li><strong>提出区域自适应的概念强化机制。</strong> Adaptive Style Nursing 将概念路由到整图、天空或道路，依据区域交叉注意力缺口动态调节更新，并在目标满足后停止校正。</li>
+<li><strong>设计互补的空间与语义结构约束。</strong> LSSG 在结构信息最稳定的中间层锚定位置、邻域和低频布局；ESSG 从低熵自注意力头中提取物体关系并进行分布对齐。</li>
+<li><strong>以 Learned Structural Kernel 提升效率。</strong> LSK 学习显式语义引导产生的结构聚合，在取消辅助参考轨迹后将平均延迟、计算量和能耗分别降低 28.8%、20.9% 和 22.4%，同时改善 guidance-only core 的全部 11 项指标。</li>
+</ol>
+<h2 id="完整论文">完整论文</h2>
+<p><strong>Zero-Shot Compound Weather Transfer with Adaptive Style Nursing and Learned Structural Kernel</strong></p>
+<p><strong>Chi Zhang, Yuchen Li, Le Wang, Meng Yuan, Yuanqi Su, Li Li</strong></p>
+<div class="paper-actions">
+  <a href="../papers/style-nursing-plus-plus.pdf" target="_blank" rel="noreferrer">Open full PDF</a>
+  <a href="../papers/style-nursing-plus-plus.pdf" download="StyleNursingPP_revised.pdf">Download PDF</a>
+</div>
+<p>为避免部分浏览器无法加载内嵌 PDF，下面同时提供完整 12 页的逐页阅读版本。原始 PDF 仍可通过上方按钮打开或下载。</p>
+<figure class="markdown-figure"><img src="../projects/style-nursing-plus-plus/paper-pages/page-01.jpg" alt="Style Nursing++ 论文第 1 页"/><figcaption>Style Nursing++ 论文第 1 页</figcaption></figure>
+<figure class="markdown-figure"><img src="../projects/style-nursing-plus-plus/paper-pages/page-02.jpg" alt="Style Nursing++ 论文第 2 页"/><figcaption>Style Nursing++ 论文第 2 页</figcaption></figure>
+<figure class="markdown-figure"><img src="../projects/style-nursing-plus-plus/paper-pages/page-03.jpg" alt="Style Nursing++ 论文第 3 页"/><figcaption>Style Nursing++ 论文第 3 页</figcaption></figure>
+<figure class="markdown-figure"><img src="../projects/style-nursing-plus-plus/paper-pages/page-04.jpg" alt="Style Nursing++ 论文第 4 页"/><figcaption>Style Nursing++ 论文第 4 页</figcaption></figure>
+<figure class="markdown-figure"><img src="../projects/style-nursing-plus-plus/paper-pages/page-05.jpg" alt="Style Nursing++ 论文第 5 页"/><figcaption>Style Nursing++ 论文第 5 页</figcaption></figure>
+<figure class="markdown-figure"><img src="../projects/style-nursing-plus-plus/paper-pages/page-06.jpg" alt="Style Nursing++ 论文第 6 页"/><figcaption>Style Nursing++ 论文第 6 页</figcaption></figure>
+<figure class="markdown-figure"><img src="../projects/style-nursing-plus-plus/paper-pages/page-07.jpg" alt="Style Nursing++ 论文第 7 页"/><figcaption>Style Nursing++ 论文第 7 页</figcaption></figure>
+<figure class="markdown-figure"><img src="../projects/style-nursing-plus-plus/paper-pages/page-08.jpg" alt="Style Nursing++ 论文第 8 页"/><figcaption>Style Nursing++ 论文第 8 页</figcaption></figure>
+<figure class="markdown-figure"><img src="../projects/style-nursing-plus-plus/paper-pages/page-09.jpg" alt="Style Nursing++ 论文第 9 页"/><figcaption>Style Nursing++ 论文第 9 页</figcaption></figure>
+<figure class="markdown-figure"><img src="../projects/style-nursing-plus-plus/paper-pages/page-10.jpg" alt="Style Nursing++ 论文第 10 页"/><figcaption>Style Nursing++ 论文第 10 页</figcaption></figure>
+<figure class="markdown-figure"><img src="../projects/style-nursing-plus-plus/paper-pages/page-11.jpg" alt="Style Nursing++ 论文第 11 页"/><figcaption>Style Nursing++ 论文第 11 页</figcaption></figure>
+<figure class="markdown-figure"><img src="../projects/style-nursing-plus-plus/paper-pages/page-12.jpg" alt="Style Nursing++ 论文第 12 页"/><figcaption>Style Nursing++ 论文第 12 页</figcaption></figure></article><aside class="project-toc" aria-label="文章目录"><p>Contents</p><nav><a href="#背景" class="toc-level-2 is-active" aria-current="location">背景</a><a href="#问题-style-neglection-与-style-over-expression" class="toc-level-2 ">问题：Style Neglection 与 Style Over-expression</a><a href="#insight" class="toc-level-2 ">Insight</a><a href="#方法" class="toc-level-2 ">方法</a><a href="#1-adaptive-style-nursing-按缺口自适应强化概念" class="toc-level-3 ">1. Adaptive Style Nursing：按缺口自适应强化概念</a><a href="#2-lssg-分层空间结构保护" class="toc-level-3 ">2. LSSG：分层空间结构保护</a><a href="#3-essg-选择低熵注意力头保持语义关系" class="toc-level-3 ">3. ESSG：选择低熵注意力头保持语义关系</a><a href="#4-learned-structural-kernel-学习结构聚合并替代参考分支" class="toc-level-3 ">4. Learned Structural Kernel：学习结构聚合并替代参考分支</a><a href="#实验" class="toc-level-2 ">实验</a><a href="#1-实验设置" class="toc-level-3 ">1. 实验设置</a><a href="#2-复合与单一天气定性比较" class="toc-level-3 ">2. 复合与单一天气定性比较</a><a href="#3-street-6k-主定量结果" class="toc-level-3 ">3. STREET-6K 主定量结果</a><a href="#4-组件消融" class="toc-level-3 ">4. 组件消融</a><a href="#5-lsk-拟合与注意力一致性" class="toc-level-3 ">5. LSK 拟合与注意力一致性</a><a href="#6-推理效率" class="toc-level-3 ">6. 推理效率</a><a href="#7-跨域迁移" class="toc-level-3 ">7. 跨域迁移</a><a href="#局限" class="toc-level-2 ">局限</a><a href="#项目贡献总结" class="toc-level-2 ">项目贡献总结</a><a href="#完整论文" class="toc-level-2 ">完整论文</a></nav></aside></div></main></body></html>
