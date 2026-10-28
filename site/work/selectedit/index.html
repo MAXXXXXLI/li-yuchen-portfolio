@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="preload" as="image" href="../../projects/selectedit/teaser.png"/>
+<link rel="preload" as="image" href="../../projects/selectedit/method.png"/>
+<link rel="preload" as="image" href="../../projects/selectedit/trajectory-mechanism.png"/>
+<link rel="preload" as="image" href="../../projects/selectedit/paper-preview.jpg"/>
+<link rel="stylesheet" href="../../_next/static/css/index.BlEUNAtn.css"/>
+<title>SelectEdit｜李昱辰</title>
+<meta name="description" content="SelectEdit：以选择性源一致性协调局部语义编辑与源场景细节保持的免训练、免反演视频编辑方法。"/>
+<meta property="og:title" content="SelectEdit｜李昱辰"/>
+<meta property="og:description" content="Selective Source Consistency for Inversion-Free Video Editing"/>
+<meta property="og:type" content="article"/>
+<meta property="og:image" content="https://maxxxxxli.github.io/li-yuchen-portfolio/projects/selectedit/teaser.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<style>
+@font-face{font-family:GeistLocal;src:url(../../_next/static/_vinext_fonts/geist-8ac0455e797f/geist-98bbbccb.woff2) format("woff2");font-display:swap}
+:root{--font-geist-sans:GeistLocal,"PingFang SC",system-ui,sans-serif;--font-geist-mono:"SFMono-Regular",Consolas,monospace}
+.project-note{border-left:3px solid var(--accent);background:#315faa0b;margin:26px 0 36px;padding:14px 18px}.project-note p{margin:0}.role-line{font-family:var(--mono);color:var(--muted);letter-spacing:.04em;font-size:13px}.metric-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:28px 0 36px}.metric-card{border:1px solid var(--line-bold);background:#ffffffb8;padding:16px}.metric-card strong{display:block;color:var(--accent);font-family:var(--mono);font-size:25px;line-height:1.1}.metric-card span{display:block;color:var(--muted);margin-top:7px;font-size:11px;line-height:1.45}@media(max-width:700px){.metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+<main class="markdown-page">
+<header class="project-topbar">
+<a href="../../index.html#work">← Back</a>
+<span>计划投稿 CVPR 2027 · 第一作者</span>
+<a href="#top">Top ↑</a>
+</header>
+<div class="project-shell" id="top">
+<article class="markdown-article">
+<h1>SelectEdit</h1>
+<p class="role-line">Selective Source Consistency for Inversion-Free Video Editing</p>
+<div class="project-note"><p><strong>项目状态：</strong>计划投稿 CVPR 2027。李昱辰为第一作者。当前论文为匿名审稿准备稿，本页面暂不提供全文下载，作者列表与公开版本链接将在确认公开后补充。</p></div>
+
+<h2 id="背景">背景</h2>
+<p>文本引导视频编辑希望只修改描述中指定的对象或属性，同时保持周围场景、物体边界和运动轨迹。以“把演奏者替换为机器人”为例，编辑需要显著改变人物外观，却不能破坏乐器、墙面纹理、相邻人物或跨帧运动。</p>
+<figure class="markdown-figure"><img src="../../projects/selectedit/teaser.png" alt="SelectEdit 的局部视频编辑示例：猫与汽车的对象替换和局部外观修改"/><figcaption>局部语义变化与源场景保持：每个编辑结果都与上方源视频在三个时间点对应。</figcaption></figure>
+<ul>
+<li><strong>编辑强度与源一致性的矛盾：</strong>源约束过强会压制目标变化，约束过弱又会改写无关内容。</li>
+<li><strong>空间选择问题：</strong>局部编辑需要回答“哪里可以改变”，而不是把文本语义均匀施加到整段视频。</li>
+<li><strong>跨帧细节问题：</strong>固定坐标上的时间聚合可能混合不同运动表面，导致纹理漂移与闪烁。</li>
+</ul>
+
+<h2 id="核心思路">核心思路</h2>
+<p>SelectEdit 的核心是<strong>选择性源一致性</strong>：让源对象与源运动承担互补角色。源对象注意力决定可编辑区域，源运动则提供跨帧细节对应关系；同一空间选择同时连接“改什么”和“保留什么”。</p>
+<ol>
+<li>在源一致的编辑轨迹上逐步形成目标外观，避免整体结构过早偏离。</li>
+<li>用源对象注意力定位区域，并把目标对象的语义贡献注入该区域。</li>
+<li>在解码后沿源运动恢复互补区域的多尺度细节，同时保留已编辑的粗尺度外观。</li>
+</ol>
+
+<h2 id="方法">方法</h2>
+<figure class="markdown-figure"><img src="../../projects/selectedit/method.png" alt="SelectEdit 总体框架，包括渐进轨迹正则、RGSM 和 MAMR"/><figcaption>SelectEdit 总体框架：局部语义干预与源细节恢复共享同一空间选择，源运动为跨帧重建提供对应关系。</figcaption></figure>
+
+<h3 id="1-渐进轨迹正则">1. 渐进轨迹正则</h3>
+<p>方法在冻结的视频 VAE 与速度预测器上进行直接源到目标的传输，不需要训练，也不需要反演。Progressive State Shifting（PSS）逐步把累积编辑位移纳入目标查询，使目标外观在稳定轨迹上形成；Clean-prediction Feedback 则利用源分支与目标分支的干净状态预测差异修正更新，控制整体偏移。</p>
+<figure class="markdown-figure"><img src="../../projects/selectedit/trajectory-mechanism.png" alt="FlowEdit 与 SelectEdit 的成对状态构造和渐进轨迹更新对比"/><figcaption>成对状态与轨迹更新。左侧为 FlowEdit，右侧为 SelectEdit：渐进位移补偿控制目标状态的形成，clean-prediction feedback 根据源与目标的干净状态预测差异修正更新。虚线连接对应状态与预测，箭头表示位移和速度。</figcaption></figure>
+
+<h3 id="2-rgsm-区域引导语义调制">2. RGSM：区域引导语义调制</h3>
+<p>Region-Guided Semantic Modulation（RGSM）把空间定位与语义内容解耦：源对象 token 的注意力形成软区域，目标对象 token 的 value 贡献提供待注入内容。该软区域既调制目标语义残差，也对早期 latent transport 进行空间加权，使目标变化更集中于请求区域。</p>
+<figure class="markdown-figure"><img src="../../projects/selectedit/rgsm.png" alt="PSS 与 RGSM 的结构保持和局部语义控制消融"/><figcaption>PSS 与 RGSM 的定性消融：PSS 控制源结构偏移，RGSM 使目标语义干预更平滑、更集中。</figcaption></figure>
+
+<h3 id="3-mamr-运动对齐多尺度重建">3. MAMR：运动对齐多尺度重建</h3>
+<p>Motion-Aligned Multiscale Reconstruction（MAMR）使用源视频光流与对应置信度，为源视频和解码编辑结果构造共享的运动对齐金字塔。它在编辑区域的补集恢复残差频带，同时保留编辑结果的最粗尺度分量，从而避免把源对象重新带回已编辑区域。</p>
+<figure class="markdown-figure"><img src="../../projects/selectedit/mamr.png" alt="MAMR 对轨道和枕木纹理的细节恢复与时间误差改善"/><figcaption>MAMR 恢复轨道与枕木纹理，并降低共享源光流下的局部时间 warp 误差。</figcaption></figure>
+
+<h2 id="实验">实验</h2>
+<h3 id="1-实验设置">1. 实验设置</h3>
+<ul>
+<li><strong>数据：</strong>FiVE-Bench 的全部 419 个编辑任务，覆盖 6 类对象替换、颜色与材质变化、对象添加和移除。</li>
+<li><strong>基线：</strong>TokenFlow、DNAEdit、DFVEdit、Wan-Edit、FlowDirector、UniEdit-Flow 与 RF-Solver-Edit。</li>
+<li><strong>评价维度：</strong>结构与背景保持、全局及编辑区域文本对齐、运动保真度与时间 warp 误差。</li>
+</ul>
+<div class="metric-grid">
+<div class="metric-card"><strong>+3.88 dB</strong><span>相对 Wan-Edit 的背景 PSNR 提升</span></div>
+<div class="metric-card"><strong>-27.2%</strong><span>相对 Wan-Edit 的背景 LPIPS</span></div>
+<div class="metric-card"><strong>-5.4%</strong><span>相对 UniEdit-Flow 的时间 warp 误差</span></div>
+<div class="metric-card"><strong>-66.9%</strong><span>相对 Wan-Edit 的推理时间</span></div>
+</div>
+
+<h3 id="2-主结果">2. 主结果</h3>
+<figure class="markdown-figure"><img src="../../projects/selectedit/comparison.png" alt="SelectEdit 与七种视频编辑方法的定性对比"/><figcaption>三类局部编辑的定性比较：小提琴手到机器人、制服变黄、徒步者金属化。</figcaption></figure>
+<div class="table-scroll"><table>
+<thead><tr><th>Method</th><th>Dist. ↓</th><th>PSNR ↑</th><th>LPIPS ↓</th><th>MSE ↓</th><th>SSIM ↑</th><th>CLIP ↑</th><th>CLIP edit ↑</th><th>Fidelity ↑</th><th>Warp ↓</th></tr></thead>
+<tbody>
+<tr><td>TokenFlow</td><td>21.94</td><td>20.73</td><td>157.68</td><td>98.45</td><td>72.67</td><td>26.57</td><td>19.91</td><td>89.33</td><td>31.9</td></tr>
+<tr><td>DNAEdit</td><td>30.78</td><td>20.50</td><td>173.29</td><td>107.91</td><td>70.21</td><td>26.43</td><td>20.24</td><td>82.40</td><td>25.6</td></tr>
+<tr><td>DFVEdit</td><td>13.69</td><td>24.24</td><td>98.38</td><td>43.63</td><td>80.99</td><td>25.87</td><td>19.98</td><td>89.15</td><td>26.3</td></tr>
+<tr><td>Wan-Edit</td><td>11.53</td><td>25.24</td><td>91.52</td><td>36.10</td><td>82.87</td><td>26.39</td><td>20.23</td><td>89.29</td><td>24.8</td></tr>
+<tr><td>FlowDirector</td><td>19.90</td><td>22.95</td><td>100.13</td><td>62.20</td><td>82.63</td><td><strong>26.84</strong></td><td>20.38</td><td>88.02</td><td>24.3</td></tr>
+<tr><td>UniEdit-Flow</td><td>17.66</td><td>24.50</td><td>128.86</td><td>46.26</td><td>79.21</td><td>25.89</td><td>20.50</td><td>88.09</td><td>22.4</td></tr>
+<tr><td>RF-Solver-Edit</td><td>59.88</td><td>18.44</td><td>280.39</td><td>205.82</td><td>62.14</td><td>25.33</td><td>19.65</td><td>69.89</td><td>23.0</td></tr>
+<tr><td><strong>Ours</strong></td><td><strong>6.07</strong></td><td><strong>29.12</strong></td><td><strong>66.66</strong></td><td><strong>16.36</strong></td><td><strong>88.80</strong></td><td>26.37</td><td><strong>20.78</strong></td><td><strong>90.41</strong></td><td><strong>21.2</strong></td></tr>
+</tbody></table></div>
+<p>SelectEdit 在结构距离、背景 PSNR / LPIPS / MSE / SSIM、编辑区域文本对齐、运动保真度和时间 warp 误差上取得该比较中的最佳结果；全局 CLIP 低于 FlowDirector，说明主要优势集中在局部编辑区域与源场景保持。</p>
+<p>32 名参与者完成 672 次成对比较。与七种基线相比，SelectEdit 在编辑对齐、内容保持、时间一致性和总体偏好四项指标上均获得多数偏好；最高总体偏好为 88.5%。</p>
+
+<h3 id="3-组件消融">3. 组件消融</h3>
+<div class="table-scroll"><table>
+<thead><tr><th>配置</th><th>PSNR ↑</th><th>LPIPS ↓</th><th>CLIP edit ↑</th><th>Fidelity ↑</th></tr></thead>
+<tbody>
+<tr><td>w/o PSS</td><td>28.03</td><td>71.36</td><td><strong>21.05</strong></td><td>89.98</td></tr>
+<tr><td>w/o RGSM</td><td>28.87</td><td>68.02</td><td>20.74</td><td>90.31</td></tr>
+<tr><td>w/o MAMR</td><td>28.08</td><td>75.42</td><td>20.77</td><td>89.79</td></tr>
+<tr><td><strong>Ours</strong></td><td><strong>29.12</strong></td><td><strong>66.66</strong></td><td>20.78</td><td><strong>90.41</strong></td></tr>
+</tbody></table></div>
+<p>MAMR 在几乎不改变编辑区域文本对齐的情况下，使 PSNR 提升 1.04 dB、LPIPS 降低 11.6%、时间 warp 误差降低 9.5%。PSS 与 RGSM 则分别承担轨迹结构控制和局部语义干预。</p>
+
+<h3 id="4-效率">4. 效率</h3>
+<figure class="markdown-figure"><img src="../../projects/selectedit/efficiency.png" alt="SelectEdit 与基线的视频编辑时间和峰值显存比较"/><figcaption>单张 RTX PRO 6000 Blackwell 上的平均推理时间与峰值显存。SelectEdit：76.34 秒、23.89 GiB。</figcaption></figure>
+<p>完整流程包含源光流估计与 MAMR，平均耗时 76.34 秒、峰值显存 23.89 GiB。相较 Wan-Edit 的 230.62 秒，推理时间减少 66.9%，显存开销相近。</p>
+
+<h2 id="局限">局限</h2>
+<p>当前方法更擅长局部语义编辑。对于把森林整体变成沙漠或雪景等大范围背景改写，源一致性约束可能保留部分原始植被，使全局场景变化不够彻底。后续工作可根据编辑范围与语义需求，自适应调整源信息的保留强度。</p>
+
+<h2 id="我的角色">我的角色</h2>
+<p><strong>李昱辰｜第一作者</strong></p>
+<p>具体作者列表、作者分工、代码仓库和论文公开链接将在投稿与公开安排确认后补充。</p>
+
+<h2 id="完整论文">完整论文</h2>
+<p><strong>SelectEdit: Selective Source Consistency for Inversion-Free Video Editing</strong></p>
+<p>当前提供的是 CVPR 2027 匿名审稿准备稿，PDF 保留原始审稿标识。</p>
+<div class="paper-actions">
+<a href="../../papers/selectedit.pdf" target="_blank" rel="noreferrer">Open full PDF</a>
+<a href="../../papers/selectedit.pdf" download="SelectEdit_CVPR2027.pdf">Download PDF</a>
+</div>
+<figure class="markdown-figure"><a href="../../papers/selectedit.pdf" target="_blank" rel="noreferrer"><img src="../../projects/selectedit/paper-preview.jpg" alt="SelectEdit 论文首页预览"/></a><figcaption>论文首页预览。点击图片打开完整 10 页 PDF，或使用上方按钮下载。</figcaption></figure>
+</article>
+<aside class="project-toc" aria-label="文章目录">
+<p>Contents</p>
+<nav>
+<a href="#背景" class="toc-level-2 is-active" aria-current="location">背景</a>
+<a href="#核心思路" class="toc-level-2">核心思路</a>
+<a href="#方法" class="toc-level-2">方法</a>
+<a href="#1-渐进轨迹正则" class="toc-level-3">1. 渐进轨迹正则</a>
+<a href="#2-rgsm-区域引导语义调制" class="toc-level-3">2. RGSM</a>
+<a href="#3-mamr-运动对齐多尺度重建" class="toc-level-3">3. MAMR</a>
+<a href="#实验" class="toc-level-2">实验</a>
+<a href="#1-实验设置" class="toc-level-3">1. 实验设置</a>
+<a href="#2-主结果" class="toc-level-3">2. 主结果</a>
+<a href="#3-组件消融" class="toc-level-3">3. 组件消融</a>
+<a href="#4-效率" class="toc-level-3">4. 效率</a>
+<a href="#局限" class="toc-level-2">局限</a>
+<a href="#我的角色" class="toc-level-2">我的角色</a>
+<a href="#完整论文" class="toc-level-2">完整论文</a>
+</nav>
+</aside>
+</div>
+</main>
+</body>
+</html>
